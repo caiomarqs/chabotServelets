@@ -1,0 +1,22 @@
+sass --watch node_modules/bootstrap/scss:css/compiler/bootstrap
+
+Linux
+sass --watch node_modules/bootstrap/scss:./css/compiler/bootstrap
+
+
+sass node_modules/bootstrap/scss:./css/compiler/bootstrap
+
+<script src="three.r92.min.js"></script>
+<script src="vanta.net.min.js"></script>
+<script>
+VANTA.NET({
+  el: "#your-element-selector",
+  color: 0x129880,
+  backgroundColor: 0x0,
+  points: 16.00,
+  maxDistance: 23.00,
+  showDots: false
+})
+</script>
+
+24842420

@@ -1,0 +1,61 @@
+package br.com.liachatbot.servelets;
+
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import com.google.gson.Gson;
+import com.ibm.cloud.sdk.core.http.HttpMediaType;
+import com.ibm.cloud.sdk.core.service.security.IamOptions;
+import com.ibm.watson.speech_to_text.v1.SpeechToText;
+import com.ibm.watson.speech_to_text.v1.model.RecognizeOptions;
+import com.ibm.watson.speech_to_text.v1.model.SpeechRecognitionResults;
+
+/**
+ * Servlet implementation class STT
+ */
+@WebServlet("/STT")
+public class STT extends HttpServlet {
+	private static final long serialVersionUID = 1L;
+
+	public STT() {
+		super();
+	}
+
+	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+
+		byte[] buffer = new byte[1024 * 1024];
+
+		InputStream is = req.getInputStream();
+		File tempFile = File.createTempFile("speech-", ".wav");
+
+		try (FileOutputStream os = new FileOutputStream(tempFile)) {
+			int length;
+			while ((length = is.read(buffer)) != -1) {
+				os.write(buffer, 0, length);
+			}
+		}
+
+		IamOptions options = new IamOptions.Builder()
+				// Colocar a sua APIKEY
+				.apiKey("GV21tRtFIJ-EUKLTuKl1Xr4USdAYK7B9WInkbXfJ4nLs").build();
+
+		SpeechToText service = new SpeechToText(options);
+
+		RecognizeOptions recognizeOptions = new RecognizeOptions.Builder().audio(tempFile)
+				.contentType(HttpMediaType.AUDIO_WAV).model("pt-BR_BroadbandModel").build();
+
+		SpeechRecognitionResults transcript = service.recognize(recognizeOptions).execute().getResult();
+
+		resp.setContentType("application/json");
+		resp.getWriter().write(new Gson().toJson(transcript.getResults()));
+	}
+
+}
