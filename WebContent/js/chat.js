@@ -85,6 +85,8 @@ function inserirMsgUsr(msgUsr) {
         horas = "";
         dia = "";
 
+        
+
     }
 }
 

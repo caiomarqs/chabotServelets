@@ -19,7 +19,7 @@ function sendMessageToVoice(msg) {
 		if (xhr.status == 200) {
 			// Codigo de sucesso
 			var blob = new Blob([ xhr.response ], {
-				type : "audio/wav"
+				type : "audio/mp3"
 			});
 			createAudioElement(blob);
 		} else {
@@ -42,8 +42,6 @@ function createAudioElement(blob) {
 	let i = document.createElement('i');
 	i.classList.add('fas', 'fa-play');
 	
-	let playFlag = false;
-
 	audio.controls = false;
 	audio.src = url;
 

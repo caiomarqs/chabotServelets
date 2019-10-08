@@ -190,12 +190,18 @@ body {
   width: 100%;
   height: 100%;
 }
+@media (max-width: 767.98px) {
+  #sobre {
+    background-image: linear-gradient(180deg, #151819, #1d1e1f);
+  }
+}
 
 #earth {
   margin: -10em 0;
   width: 100% !important;
   height: 100% !important;
   touch-action: manipulation;
+  opacity: 0.7;
 }
 @media (max-width: 991.98px) {
   #earth {
@@ -205,6 +211,7 @@ body {
 @media (max-width: 767.98px) {
   #earth {
     margin: -15em 0;
+    opacity: 0.4;
   }
 }
 
@@ -264,7 +271,6 @@ body {
 /*--como funciona-- */
 #como {
   background-image: url("../../../images/bg2.png"), linear-gradient(180deg, #1d1e1f, #212324);
-  height: 100% !important;
 }
 @media (max-width: 1199.98px) {
   #como {
@@ -397,6 +403,11 @@ body {
     font-size: 12pt;
   }
 }
+@media (max-width: 991.98px) {
+  #texto-como > .corpo > .destaque {
+    max-width: 90%;
+  }
+}
 @media (max-width: 767.98px) {
   #texto-como > .corpo > .destaque {
     max-width: 90%;
@@ -409,10 +420,18 @@ body {
   text-align: justify;
   font-weight: 100;
   padding: 0 0 0 3%;
+  max-width: 50%;
 }
 @media (max-width: 991.98px) {
   #texto-como > .corpo > .descricao {
     font-size: 12pt;
+    max-width: 100%;
+  }
+}
+@media (max-width: 767.98px) {
+  #texto-como > .corpo > .descricao {
+    padding: 0 3% 0 3%;
+    max-width: 100%;
   }
 }
 
@@ -455,12 +474,11 @@ body {
   z-index: 10;
   margin: 0em 0 0 0;
 }
-@media (max-width: 991.98px) {
+@media (max-width: 1199.98px) {
   #texto-quem .titulo {
-    font-size: 18pt;
+    font-size: 30pt;
   }
 }
-
 #texto-quem .titulo p {
   margin: -0.5em 0;
   user-select: none;
@@ -482,9 +500,12 @@ body {
 
 #texto-quem > .corpo {
   margin: 4em 0 0 0;
-  color: #eeeeee;
-  font-size: 18pt;
   text-align: center;
+}
+@media (max-width: 767.98px) {
+  #texto-quem > .corpo {
+    margin: 2em 0 0 0;
+  }
 }
 
 #texto-quem .destaque {
@@ -493,6 +514,11 @@ body {
 
 #texto-quem .destaque img {
   width: 55%;
+}
+@media (max-width: 767.98px) {
+  #texto-quem .destaque img {
+    width: 95%;
+  }
 }
 
 #texto-quem > .corpo > .destaque > p {
@@ -511,10 +537,20 @@ body {
 #texto-quem > .corpo > p {
   color: #8c8d8e;
   font-size: 20pt;
-  text-align: justify;
+  text-align: center;
   font-weight: 100;
-  margin: 1em 0 3em 0;
+  margin: 2em 0 3em 0;
   text-shadow: 2px 2px 9px #151819d1;
+}
+@media (max-width: 1199.98px) {
+  #texto-quem > .corpo > p {
+    font-size: 12pt;
+  }
+}
+@media (max-width: 767.98px) {
+  #texto-quem > .corpo > p {
+    margin: 4em 0 4em 0;
+  }
 }
 
 /* -----------contato--------- */
@@ -564,6 +600,9 @@ body {
   outline: none;
 }
 
+.texto > h1 {
+  text-transform: uppercase;
+}
 @media (max-width: 991.98px) {
   .texto > h1 {
     font-size: 20pt;

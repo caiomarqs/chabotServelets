@@ -30,14 +30,14 @@ String msg = req.getParameter("question");
 		
 		IamOptions options = new IamOptions.Builder()
 				// Colocar a sua APIKEY
-				.apiKey("f9gN23DWrECVyHEkXjo9XwxBtpHb4NtqorIfvKPbLhvx")
+				.apiKey("0Uhvyca9uNz5_3ZNROkPQys_fciV8Ydpl7QBUf9Xbobt")
 				.build();
 		
 		TextToSpeech service = new TextToSpeech(options);
 		
 		SynthesizeOptions sOptions = new SynthesizeOptions.Builder()
 				.text(msg)
-				.accept("audio/wav")
+				.accept("audio/mp3")
 				.voice("pt-BR_IsabelaV3Voice")
 				.build();
 		
