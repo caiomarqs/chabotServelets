@@ -1,8 +1,8 @@
 //animação
 //(function(){
-	var AMOUNT=200, d=1, R=200, adjustment=true, adaptive=true,
+	var AMOUNT=200, d=0, R=200, adjustment=true, adaptive=true,
 		obliquity=23/180*3.14, roV1=.0022, roV2=-.0005, ro1=0, ro2=0,
-		canvas='#earth', color='#2af8d8', fogC='#2af8d8';
+		canvas='#earth', color='#2af8d8', fogC='#2af8d8', T_earth='https://mapplix.github.io/earth/earth.png';;
 
 	var camera, scene, renderer;
 
@@ -70,7 +70,8 @@ varying float vBright;\n\
 		transparent: true, alphaTest: 0.05
 	});//, opacity: 0
 	Wmaterial.color.set(fogC);
-	Wmaterial.side=2;
+	Wmaterial.side=3;
+	Wmaterial.visible=true;
 	Wmaterial.extensions={derivatives: 1};
 	var geometry = new THREE.IcosahedronGeometry(R,3);//OctahedronGeometry
 
@@ -126,12 +127,12 @@ varying float vBright;\n\
 	Ematerial.envMap=cubeCamera.renderTarget.texture;
 	Ematerial.envMap.minFilter = THREE.LinearMipMapLinearFilter; 
 	Ematerial.envMap.mapping=THREE.CubeReflectionMapping;
-	var Earth = new THREE.Mesh(new THREE.IcosahedronGeometry(R*.5, 3), Ematerial)
+	var Earth = new THREE.Mesh(new THREE.IcosahedronGeometry(R*0, 3), Ematerial)
 	var wGeometry=geometry.clone();
 	particles = new THREE.Group();
 	world = new THREE.Group();
 	var Net=new THREE.Mesh(bGeometry, Wmaterial);
-	particles.add(Net, Earth);//new THREE.Points(geometry, Pmaterial), 
+	particles.add(Net /*, Earth*/);//new THREE.Points(geometry, Pmaterial), 
 	//particles.rotation.order='YXZ'
 	world.add(particles);
 	scene.add(world);

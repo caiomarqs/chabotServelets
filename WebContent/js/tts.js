@@ -38,7 +38,7 @@ function createAudioElement(blob) {
 	var audio = document.createElement("audio");
 	var div = document.createElement("div");
 	let playbtn = document.createElement("button");
-	playbtn.classList.add("btn", "btn-primary");
+	playbtn.classList.add("btn", "btn-primary", "btn-play");
 	let i = document.createElement('i');
 	i.classList.add('fas', 'fa-play');
 	
@@ -48,9 +48,9 @@ function createAudioElement(blob) {
 	audio.src = url;
 
 	div.appendChild(audio);
-	var chat = document.querySelector("#corpo-msg");
-	chat.appendChild(div);
-	chat.appendChild(playbtn);
+	var chat = document.querySelector("#corpo-msg").getElementsByTagName("div");
+	chat[chat.length - 1].appendChild(div);
+	chat[chat.length - 1].appendChild(playbtn);
 	playbtn.appendChild(i);
 
 	playbtn.addEventListener('click', function() {

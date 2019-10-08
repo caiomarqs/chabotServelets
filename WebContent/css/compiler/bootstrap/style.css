@@ -190,12 +190,18 @@ body {
   width: 100%;
   height: 100%;
 }
+@media (max-width: 767.98px) {
+  #sobre {
+    background-image: linear-gradient(180deg, #151819, #1d1e1f);
+  }
+}
 
 #earth {
   margin: -10em 0;
   width: 100% !important;
   height: 100% !important;
   touch-action: manipulation;
+  opacity: 0.7;
 }
 @media (max-width: 991.98px) {
   #earth {
@@ -205,6 +211,7 @@ body {
 @media (max-width: 767.98px) {
   #earth {
     margin: -15em 0;
+    opacity: 0.4;
   }
 }
 
@@ -276,6 +283,7 @@ body {
   }
 }
 
+/*-todo conteudo-*/
 #texto-como {
   padding: 8em 5em 0;
 }
@@ -284,48 +292,146 @@ body {
     padding: 8em 1em 0;
   }
 }
-
-#texto-como > .titulo {
-  color: #2af8d8;
-  font-size: 24pt;
-  font-weight: 600;
-  margin: 0 0 1em 0;
-  padding: 0 0 0 0.6em;
-  border-left: #2af8d8 0.1em solid;
-  text-transform: uppercase;
-}
-@media (max-width: 991.98px) {
-  #texto-como > .titulo {
-    font-size: 18pt;
+@media (max-width: 767.98px) {
+  #texto-como {
+    padding: 1em 1em 0;
   }
 }
 
-#texto-como > .titulo > p {
+.topo {
+  display: flex;
+}
+@media (max-width: 767.98px) {
+  .topo {
+    display: block;
+    text-align: center;
+  }
+}
+
+#texto-como > .topo > .titulo {
+  color: #2af8d8;
+  font-size: 43pt;
+  font-weight: 600;
+  text-transform: uppercase;
+  text-align: end;
+  width: 48%;
+  z-index: 10;
+  margin: 3.2em 0;
+}
+@media (max-width: 1199.98px) {
+  #texto-como > .topo > .titulo {
+    font-size: 30pt;
+    width: 50%;
+  }
+}
+@media (max-width: 767.98px) {
+  #texto-como > .topo > .titulo {
+    width: 100%;
+    text-align: center;
+    margin: 2em 0 1.2em 0;
+  }
+}
+
+#texto-como > .topo > .titulo > p {
   user-select: none;
   margin: -0.5em 0;
+  color: #d3d3d3;
 }
-#texto-como > .titulo > p::first-letter {
-  font-size: 36pt;
+
+#texto-como > .topo > .titulo > p:last-of-type {
+  user-select: none;
+  margin: -0.5em 0;
+  color: #2af8d8;
 }
 
 #texto-como > .corpo {
-  margin: 4em 0 0 0;
+  margin: 10em 0 0 0;
   color: #eeeeee;
 }
-
-#texto-como > .corpo > img {
-  margin: 0 auto !important;
-  width: 30rem;
-  margin: 0 0 0 -1em;
+@media (max-width: 767.98px) {
+  #texto-como > .corpo {
+    margin: 3em 0 0 0;
+  }
 }
 
-#texto-como > .corpo > p {
-  font-size: 18pt;
-  text-align: justify;
+.divider {
+  width: 1px;
+  background-color: #8c8d8e;
+  height: 18em;
+  margin: -17em 0 0;
+  z-index: 15;
+}
+@media (max-width: 1199.98px) {
+  .divider {
+    width: 1px;
+    background-color: #8c8d8e;
+    height: 7em;
+    margin: -5em 0 0;
+    z-index: 15;
+  }
+}
+
+#texto-como > .topo > img {
+  max-width: 40rem;
+  margin: 0px 0 0 39%;
+  position: absolute;
+  z-index: 1;
+}
+@media (max-width: 1199.98px) {
+  #texto-como > .topo > img {
+    max-width: 30rem;
+  }
+}
+@media (max-width: 767.98px) {
+  #texto-como > .topo > img {
+    max-width: 35rem;
+    margin: 0;
+    position: relative;
+  }
+}
+
+#texto-como > .corpo > .destaque {
+  color: #8c8d8e;
+  font-size: 20pt;
+  text-transform: uppercase;
+  text-align: right;
+  max-width: 48%;
+  padding: 0 3% 0 0;
+}
+@media (max-width: 1199.98px) {
+  #texto-como > .corpo > .destaque {
+    font-size: 12pt;
+  }
 }
 @media (max-width: 991.98px) {
-  #texto-como > .corpo > p {
+  #texto-como > .corpo > .destaque {
+    max-width: 90%;
+  }
+}
+@media (max-width: 767.98px) {
+  #texto-como > .corpo > .destaque {
+    max-width: 90%;
+  }
+}
+
+#texto-como > .corpo > .descricao {
+  color: #8c8d8e;
+  font-size: 14pt;
+  text-align: justify;
+  font-weight: 100;
+  padding: 0 0 0 3%;
+  max-width: 50%;
+}
+@media (max-width: 991.98px) {
+  #texto-como > .corpo > .descricao {
     font-size: 12pt;
+    max-width: 100%;
+  }
+}
+@media (max-width: 767.98px) {
+  #texto-como > .corpo > .descricao {
+    padding: 0 3% 0 3%;
+    max-width: 100%;
   }
 }
 
@@ -353,28 +459,29 @@ body {
   }
 }
 
-#texto-quem > .titulo {
-  color: #2af8d8;
-  font-size: 24pt;
-  font-weight: 600;
-  margin: 0 0 1em 0;
-  padding: 0 0 0 0.6em;
-  border-left: #2af8d8 0.1em solid;
-  text-transform: uppercase;
+#texto-quem .topo {
   display: flex;
-  flex-wrap: wrap;
-}
-@media (max-width: 991.98px) {
-  #texto-quem > .titulo {
-    font-size: 18pt;
-  }
+  padding-left: calc(50% - 11.5em);
 }
 
-#texto-quem > .titulo p {
-  user-select: none;
+#texto-quem .titulo {
+  color: #d3d3d3;
+  font-size: 43pt;
+  font-weight: 600;
+  text-transform: uppercase;
+  text-align: start;
+  width: 100%;
+  z-index: 10;
+  margin: 0em 0 0 0;
 }
-#texto-quem > .titulo p::first-letter {
-  font-size: 36pt;
+@media (max-width: 1199.98px) {
+  #texto-quem .titulo {
+    font-size: 30pt;
+  }
+}
+#texto-quem .titulo p {
+  margin: -0.5em 0;
+  user-select: none;
 }
 
 #texto-quem > .titulo p:first-of-type {
@@ -382,24 +489,67 @@ body {
   margin: 0 0 0.1em 0;
 }
 
-#texto-quem > .corpo {
-  margin: 4em 0 0 0;
-  color: #eeeeee;
-  font-size: 18pt;
+#texto-quem .divider2 {
+  width: 16em;
+  background-color: #2af8d8;
+  height: 6px;
+  margin: 0.6em 12.5em 0;
+  z-index: 15;
+  position: absolute;
 }
 
-#texto-quem > .corpo > img {
-  margin: 0 auto !important;
-  width: 30rem;
-  margin: 0 0 0 -1em;
+#texto-quem > .corpo {
+  margin: 4em 0 0 0;
+  text-align: center;
+}
+@media (max-width: 767.98px) {
+  #texto-quem > .corpo {
+    margin: 2em 0 0 0;
+  }
+}
+
+#texto-quem .destaque {
+  text-align: center;
+}
+
+#texto-quem .destaque img {
+  width: 55%;
+}
+@media (max-width: 767.98px) {
+  #texto-quem .destaque img {
+    width: 95%;
+  }
+}
+
+#texto-quem > .corpo > .destaque > p {
+  text-transform: uppercase;
+  font-size: 40pt;
+  left: auto;
+  margin: calc(-12% - 2em) 0 0 0;
+  color: #d3d3d3;
+}
+@media (max-width: 991.98px) {
+  #texto-quem > .corpo > .destaque > p {
+    font-size: 14pt !important;
+  }
 }
 
 #texto-quem > .corpo > p {
-  text-align: justify;
+  color: #8c8d8e;
+  font-size: 20pt;
+  text-align: center;
+  font-weight: 100;
+  margin: 2em 0 3em 0;
+  text-shadow: 2px 2px 9px #151819d1;
 }
-@media (max-width: 991.98px) {
+@media (max-width: 1199.98px) {
   #texto-quem > .corpo > p {
-    font-size: 14pt !important;
+    font-size: 12pt;
+  }
+}
+@media (max-width: 767.98px) {
+  #texto-quem > .corpo > p {
+    margin: 4em 0 4em 0;
   }
 }
 
@@ -450,6 +600,9 @@ body {
   outline: none;
 }
 
+.texto > h1 {
+  text-transform: uppercase;
+}
 @media (max-width: 991.98px) {
   .texto > h1 {
     font-size: 20pt;

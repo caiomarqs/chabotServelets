@@ -192,15 +192,20 @@
 
         <section id="como" class="vh-100">
             <div id="texto-como" class="position-relative">
-                <div class="titulo">
-                    <p>Como</p>
-                    <p>Funciona</p>
-                </div>
-                <div class="corpo row">
+                <div class="topo">
+                    <div class="titulo">
+                        <p>Como</p>
+                        <p>Funciona</p>
+                    </div>
                     <img src="images/comofunciona.png" class="col-xl-6 col-12">
-                    <p class="col-xl-6 col-12">A LIA foi pensada para auxílio das dúvidas dos universitários da Fiap,
-                        que ao ingressarem na
-                        faculdade enfrentam dificuldades para realizar as matéria de nivelamento que a faculdade
+                </div>
+
+                <div class="corpo row">
+                    <p class="col-xl-6 col-12 destaque">A LIA foi pensada para auxílio das dúvidas dos universitários da
+                        Fiap.</p>
+                    <div class="divider"></div>
+                    <p class="col-xl-6 col-12 descricao"> Quando os alunos ingressam faculdade enfrentam dificuldades
+                        para realizar as matéria de nivelamento que a faculdade
                         oferece. Ao realizar as atividades dos cursos, você contará com a ajuda da Lia, um chatbot que
                         responderá a suas dúvidas facilitando o estudo, a cada dia mais perto do foco.</p>
                 </div>
@@ -210,14 +215,23 @@
 
         <section id="quem" class="vh-100">
             <div id="texto-quem" class="position-relative">
-                <div class="titulo">
-                    <p>Quem</p>
-                    <p>Pode &nbsp;</p>
-                    <p>Usar</p>
+                <div class="topo">
+                    <div class="titulo">
+                        <p>Quem</p>
+                        <p>Pode Usar</p>
+                    </div>
                 </div>
-                <div class="corpo row">
 
+                <div class="corpo row">
+                    <div class="col-12 destaque">
+                        <img src="images/quem.png" alt="">
+                        <!-- <p>Quebre suas barreiras</p> -->
+                    </div>
+                    <p class="col-12 descricao"> A Jade foi criada pensando em aproximar o estudante e o
+                            conteúdo oferecido pela a universidade, sendo assim foi feita para qualquer aluno que enfrentar
+                            seus obstáculos.</p>
                 </div>
+
             </div>
         </section>
 
