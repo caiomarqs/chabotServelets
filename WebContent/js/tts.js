@@ -5,11 +5,7 @@
 //	question.value = "";
 //});
 
-function criarVoz(msg) {
-	sendMessageToVoice(msg);
-	msg = "";
-}
-
+//function sendMessageToVoice(msg, index)
 function sendMessageToVoice(msg) {
 	var xhr = new XMLHttpRequest();
 	xhr.open("POST", "TTS", true);
@@ -21,11 +17,16 @@ function sendMessageToVoice(msg) {
 			var blob = new Blob([ xhr.response ], {
 				type : "audio/mp3"
 			});
+//			createAudioElement(blob, index);
 			createAudioElement(blob);
 		} else {
 			// Codigo de deu ruim!
+			console.log("Deu erro na chamada para serviço TTS !");
 			console.log(xhr.status);
 			console.log(xhr.responseText);
+			
+			//se der erro desenha so o balao de texto
+			inserirMsgBot(msg);			
 		}
 	});
 	xhr.responseType = 'blob';
@@ -33,6 +34,8 @@ function sendMessageToVoice(msg) {
 	xhr.send(data);
 }
 
+
+//function createAudioElement(blob, index)
 function createAudioElement(blob) {
 	var url = URL.createObjectURL(blob);
 	var audio = document.createElement("audio");

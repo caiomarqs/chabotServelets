@@ -1,4 +1,4 @@
- function callBot(msg) {
+function callBot(msg) {
 	console.log("callbot");
     var xhr = new XMLHttpRequest();
     xhr.open("POST", "V1", true);// ("method, "action|url|Servelet",
@@ -10,12 +10,16 @@
             // Codigo de sucesso
             var respostas = JSON.parse(xhr.responseText);
             respostas.forEach(function (resposta) {
-                inserirMsgBot(resposta)
+            	
+                inserirMsgBot(resposta);
+                
             });
         } else {
             // Codigo de deu ruim!
             console.log(xhr.status);
             console.log(xhr.responseText);
+            //se der erro desenha so o balao de texto
+			inserirMsgBot("Estamos com problemas. Tente mais tarde novamente!");
         }
     });
     var data = "question=" + msg; // msg é a msg que vem de param na function
@@ -49,7 +53,7 @@ btnMsg.addEventListener('mouseout' || 'blur', function () {
 
 // receber msg do usuario
 let coproMsg = document.getElementById('corpo-msg');
-let inputusuario = document.getElementById('input-user');
+let inputUsuario = document.getElementById('input-user');
 
 // tratamento de data e hora
 let tratamentoDigitos = (digitos) => {
@@ -59,18 +63,23 @@ let tratamentoDigitos = (digitos) => {
 // msg do usuario
 function inserirMsgUsr(msgUsr) {
     let sysTime = new Date();
+    //let sysTime = Date.now();
+
     let horas = tratamentoDigitos(sysTime.getHours()) + ":" + tratamentoDigitos(sysTime.getMinutes()) + ":" + tratamentoDigitos(sysTime.getSeconds());
     let dia = tratamentoDigitos(sysTime.getDay()) + "/" + tratamentoDigitos(sysTime.getMonth()) + "/" + tratamentoDigitos(sysTime.getFullYear());
 
-    if (inputusuario.value == undefined || inputusuario.value == "" && msgUsr == undefined) {
-        inputusuario.classList.add('no-msg');
-        setTimeout(function () { inputusuario.classList.remove('no-msg'); }, 700);
+    if (inputUsuario.value == undefined || inputUsuario.value == "" && msgUsr == undefined) {
+        inputUsuario.classList.add('no-msg');
+        setTimeout(function () { inputUsuario.classList.remove('no-msg'); }, 700);
 
     }
     else {
 
-        let txtCapturado = (inputusuario.value) == undefined || (inputusuario.value) == ""  ? msgUsr : inputusuario.value;
+        //let txtCapturado = (inputUsuario.value) == undefined || (inputUsuario.value) == ""  ? msgUsr : inputUsuario.value;
         
+        //recebe valor digitado pelo usr
+        let txtCapturado = inputUsuario.value;
+
         let txtUsr = `<p>${txtCapturado}</p>`;
         let dataHora = `<h6 class="data_hora">${horas + " | " + dia}</h6>`;
         let boxMsg = `<div id="msg-box" class="msg_enviada d-flex flex-column" ><h5 class="nome_enviado">Nome</h5><div class="box_msg_enviada">${txtUsr}</div>${dataHora}</div>`;
@@ -79,20 +88,23 @@ function inserirMsgUsr(msgUsr) {
 
         callBot(txtCapturado);// enviado msg pro bot
 
-        inputusuario.value = "";
+        inputUsuario.value = "";
         scrollSmoothToBottom(coproMsg);
 
-        horas = "";
-        dia = "";
+        //horas = "";
+        //dia = "";
 
         
 
     }
 }
 
+//let index = 0;
 
 function inserirMsgBot(msg) {
     let sysTime = new Date();
+    //let sysTime = Date.now();
+
     let horas = tratamentoDigitos(sysTime.getHours()) + ":" + tratamentoDigitos(sysTime.getMinutes()) + ":" + tratamentoDigitos(sysTime.getSeconds());
     let dia = tratamentoDigitos(sysTime.getDay()) + "/" + tratamentoDigitos(sysTime.getMonth()) + "/" + tratamentoDigitos(sysTime.getFullYear());
 
@@ -105,20 +117,24 @@ function inserirMsgBot(msg) {
     coproMsg.appendChild(boxMsgElement);
     
     if(msg == "Minha resposta te ajudou?"){
-    	inputusuario.disabled = true;
+    	inputUsuario.disabled = true;
     	criarBtnsSatifacao();
     }
     
-    criarVoz(msg);
-
+    sendMessageToVoice(resposta);  
+//    sendMessageToVoice(resposta, index);  
+//    index++;
+    	
+    	//    sendMessageToVoice(msg);
+    
     scrollSmoothToBottom(coproMsg);
-    horas = "";
-    dia = "";
+    // horas = "";
+    // dia = "";
 }
 
 
 
-inputusuario.addEventListener('keypress', function (e) {
+inputUsuario.addEventListener('keypress', function (e) {
     if (e.which == 13) {
         inserirMsgUsr();
     }
@@ -136,6 +152,18 @@ function scrollSmoothToBottom(scrollingElement) {
         scrollTop: scrollingElement.scrollHeight
     }, 500);
 }
+
+// sombra aptir do corpo de msgs
+let navOnElement = function (element) {
+    let nav = $('#navbar');
+    element.addEventListener('scroll', function () {
+        if ($(this).scrollTop() > 0) {
+            nav.addClass("navbar-active");
+        } else {
+            nav.removeClass("navbar-active");
+        }
+    });
+};
 
 let criarBtnsSatifacao = () =>{
 	let divBtns = document.createElement("div");
@@ -157,35 +185,17 @@ let criarBtnsSatifacao = () =>{
 	chat.appendChild(divBtns);
 
 	btnSim.addEventListener('click', function() {
-		callBot("1");
-		btnSim.disabled = true;
-		btnNao.disabled = true;
-		inputusuario.disabled = false;
-	});
-	btnNao.addEventListener('click', function() {
 		callBot("0");
 		btnSim.disabled = true;
 		btnNao.disabled = true;
-		inputusuario.disabled = false;
+		inputUsuario.disabled = false;
+	});
+	btnNao.addEventListener('click', function() {
+		callBot("1");
+		btnSim.disabled = true;
+		btnNao.disabled = true;
+		inputUsuario.disabled = false;
 	});
 }
 
-// sombra aptir do corpo de msgs
-let navOnElement = function (element) {
-    let nav = $('#navbar');
-    element.addEventListener('scroll', function () {
-        if ($(this).scrollTop() > 0) {
-            nav.addClass("navbar-active");
-        } else {
-            nav.removeClass("navbar-active");
-        }
-    });
-};
-
 navOnElement(coproMsg);
-
-
-
-
-
-

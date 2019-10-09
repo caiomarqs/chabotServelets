@@ -126,10 +126,19 @@ public class V1 extends HttpServlet {
 			
 			
 			PrintStream o = new PrintStream(new File(pathLog));
-		
+			System.setOut(o);
+			
 			for (int i = 0; i < arrayLog.size() ; i++) {
-				System.setOut(o);
-				System.out.println(arrayLog.get(i));		
+				
+				if(i == 0) {
+					System.out.println("["+arrayLog.get(i)+",");
+				}
+				
+				System.out.println(arrayLog.get(i)+",");
+				
+				if((arrayLog.size() -1) == i) {
+					System.out.println(arrayLog.get(i)+"]");	
+				}
 			}
 			
 			arrayLog.clear();
