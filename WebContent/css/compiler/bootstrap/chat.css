@@ -682,6 +682,10 @@ body {
   background-color: #2af8d8;
 }
 
+#input-user:disabled {
+  background-color: #9494946b;
+}
+
 .barra > .btn-primary .fa, .fas {
   color: #2af8d8;
   width: 100%;
@@ -711,6 +715,25 @@ body {
   background-color: transparent;
   border-color: #2af8d8;
   width: fit-content;
+}
+
+.btn-sim {
+  float: left;
+  background-color: transparent;
+  color: #2af8d8;
+  border-color: #2af8d8;
+  width: fit-content;
+  padding: 0.5em 0.5em;
+  margin: 1em 0.5em 0.5em 0;
+}
+
+.btn-nao {
+  float: left;
+  background-color: transparent;
+  color: #2af8d8;
+  border-color: #2af8d8;
+  width: fit-content;
+  padding: 0.5em 0.5em;
 }
 
 /* --menssagens-- */

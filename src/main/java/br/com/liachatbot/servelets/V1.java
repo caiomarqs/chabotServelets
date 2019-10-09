@@ -1,7 +1,13 @@
 package br.com.liachatbot.servelets;
 
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
 import java.io.IOException;
+import java.io.PrintStream;
 import java.io.PrintWriter;
+import java.io.Writer;
+import java.util.ArrayList;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -17,16 +23,19 @@ import com.ibm.watson.assistant.v1.model.MessageInput;
 import com.ibm.watson.assistant.v1.model.MessageOptions;
 import com.ibm.watson.assistant.v1.model.MessageResponse;
 
-	
-
 /**
  * Servlet implementation class V1
  */
 @WebServlet("/V1")
-public class V1 extends HttpServlet {					
+public class V1 extends HttpServlet {
 	private Context context = null;
 	private static final long serialVersionUID = 1L;
 	
+	String IdAnterior = "";
+	ArrayList<MessageResponse> arrayLog = new ArrayList<MessageResponse>();
+	boolean exitsFile = false;
+	
+
 	/**
 	 * @see HttpServlet#HttpServlet()
 	 */
@@ -59,16 +68,16 @@ public class V1 extends HttpServlet {
 
 		response.setContentType("application/json");
 		PrintWriter out = response.getWriter();
+
 		System.out.println(msgResponse);
 
+		createLog(msgResponse);
+		
 		out.println(new Gson().toJson(msgResponse.getOutput().getText()));
-		
-		
 
 //		response.setContentType("application/json");
 //		response.getWriter().write();
 	}
-
 
 	private MessageResponse assistantAPICall(String msg) {
 
@@ -89,14 +98,11 @@ public class V1 extends HttpServlet {
 		// Configurando os parametros para o Watson
 		MessageOptions messageOptions = new MessageOptions.Builder().workspaceId(skillID).input(input)
 				.context(this.context).build();
-		
-		
-		
+
 		// Conectando com o Assistant e recebendo a resposta dele
 		MessageResponse response = service.message(messageOptions).execute().getResult();
-		
-		//System.out.println("resultado ...." + response);
-		
+
+		// System.out.println("resultado ...." + response);
 
 		// Gerenciamneo de contexto
 		this.context = response.getContext();
@@ -104,4 +110,32 @@ public class V1 extends HttpServlet {
 		return response;
 	}
 
+	//gereação de arquivo
+	void createLog(MessageResponse msgResponse) throws IOException {	
+		String IdAtual = msgResponse.getContext().getConversationId();
+		MessageInput triggerBot = msgResponse.getInput();
+		
+		if (IdAtual.equals(IdAnterior)) {
+			arrayLog.add(msgResponse);
+			IdAnterior = msgResponse.getContext().getConversationId();
+		}
+		
+		if(IdAtual.equals(IdAnterior) ==  false) {
+					
+			String pathLog = "conversa_"+IdAnterior+".json";
+			
+			
+			PrintStream o = new PrintStream(new File(pathLog));
+		
+			for (int i = 0; i < arrayLog.size() ; i++) {
+				System.setOut(o);
+				System.out.println(arrayLog.get(i));		
+			}
+			
+			arrayLog.clear();
+			arrayLog.add(msgResponse);
+			IdAnterior = msgResponse.getContext().getConversationId();
+		}
+
+	}
 }

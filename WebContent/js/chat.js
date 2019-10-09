@@ -104,6 +104,11 @@ function inserirMsgBot(msg) {
       
     coproMsg.appendChild(boxMsgElement);
     
+    if(msg == "Minha resposta te ajudou?"){
+    	inputusuario.disabled = true;
+    	criarBtnsSatifacao();
+    }
+    
     criarVoz(msg);
 
     scrollSmoothToBottom(coproMsg);
@@ -130,6 +135,39 @@ function scrollSmoothToBottom(scrollingElement) {
     $(scrollingElement).animate({
         scrollTop: scrollingElement.scrollHeight
     }, 500);
+}
+
+let criarBtnsSatifacao = () =>{
+	let divBtns = document.createElement("div");
+	
+	let btnSim = document.createElement("button");
+	btnSim.id = "btn-sim";
+	btnSim.classList.add("btn", "btn-primary", "btn-sim");
+	btnSim.innerHTML = "Sim";
+	divBtns.appendChild(btnSim);
+	
+	let btnNao = document.createElement("button");
+	btnNao.id = "btn-nao";
+	btnNao.classList.add("btn", "btn-primary", "btn-nao");
+	btnNao.innerHTML = "Não";
+	divBtns.appendChild(btnNao);
+	
+
+	let chat = document.querySelector("#corpo-msg");
+	chat.appendChild(divBtns);
+
+	btnSim.addEventListener('click', function() {
+		callBot("1");
+		btnSim.disabled = true;
+		btnNao.disabled = true;
+		inputusuario.disabled = false;
+	});
+	btnNao.addEventListener('click', function() {
+		callBot("0");
+		btnSim.disabled = true;
+		btnNao.disabled = true;
+		inputusuario.disabled = false;
+	});
 }
 
 // sombra aptir do corpo de msgs

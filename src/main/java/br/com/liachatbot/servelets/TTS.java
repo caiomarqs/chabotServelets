@@ -15,7 +15,7 @@ import com.ibm.watson.text_to_speech.v1.TextToSpeech;
 import com.ibm.watson.text_to_speech.v1.model.SynthesizeOptions;
 import com.ibm.watson.text_to_speech.v1.util.WaveUtils;
 
-@WebServlet("/TTS")
+//@WebServlet("/TTS")
 public class TTS extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
