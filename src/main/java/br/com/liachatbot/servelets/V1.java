@@ -121,7 +121,8 @@ public class V1 extends HttpServlet {
 		}
 		
 		if(IdAtual.equals(IdAnterior) ==  false) {
-					
+//			File f = new File("");
+//			System.out.println("Caminho absoluto: " + f.getAbsolutePath());
 			String pathLog = "conversa_"+IdAnterior+".json";
 			
 			

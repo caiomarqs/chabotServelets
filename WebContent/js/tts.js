@@ -6,7 +6,7 @@
 //});
 
 //function sendMessageToVoice(msg, index)
-function sendMessageToVoice(msg) {
+function sendMessageToVoice(msg, idUnico) {
 	var xhr = new XMLHttpRequest();
 	xhr.open("POST", "TTS", true);
 	xhr.setRequestHeader("Content-type",
@@ -17,8 +17,8 @@ function sendMessageToVoice(msg) {
 			var blob = new Blob([ xhr.response ], {
 				type : "audio/mp3"
 			});
-//			createAudioElement(blob, index);
-			createAudioElement(blob);
+			createAudioElement(blob, idUnico);
+			// createAudioElement(blob);
 		} else {
 			// Codigo de deu ruim!
 			console.log("Deu erro na chamada para serviço TTS !");
@@ -36,7 +36,7 @@ function sendMessageToVoice(msg) {
 
 
 //function createAudioElement(blob, index)
-function createAudioElement(blob) {
+function createAudioElement(blob, idUnico) {
 	var url = URL.createObjectURL(blob);
 	var audio = document.createElement("audio");
 	var div = document.createElement("div");
@@ -49,7 +49,12 @@ function createAudioElement(blob) {
 	audio.src = url;
 
 	div.appendChild(audio);
-	var chat = document.querySelector("#corpo-msg").getElementsByTagName("div");
+	// var chat = document.querySelector("#corpo-msg").getElementsByTagName("div");
+	// chat[chat.length - 1].appendChild(div);
+	// chat[chat.length - 1].appendChild(playbtn);
+	// playbtn.appendChild(i);
+
+	var chat = document.querySelector(`#${idUnico}`).getElementsByTagName("div");
 	chat[chat.length - 1].appendChild(div);
 	chat[chat.length - 1].appendChild(playbtn);
 	playbtn.appendChild(i);

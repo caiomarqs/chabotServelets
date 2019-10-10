@@ -77,12 +77,12 @@ function inserirMsgUsr(msgUsr) {
 
         //let txtCapturado = (inputUsuario.value) == undefined || (inputUsuario.value) == ""  ? msgUsr : inputUsuario.value;
         
-        //recebe valor digitado pelo usr
-        let txtCapturado = inputUsuario.value;
+        //condicao ternaria para tratamendo de msg programadas
+        let txtCapturado = (inputUsuario.value) == undefined || (inputUsuario.value) == ""  ? msgUsr : inputUsuario.value;
 
         let txtUsr = `<p>${txtCapturado}</p>`;
         let dataHora = `<h6 class="data_hora">${horas + " | " + dia}</h6>`;
-        let boxMsg = `<div id="msg-box" class="msg_enviada d-flex flex-column" ><h5 class="nome_enviado">Nome</h5><div class="box_msg_enviada">${txtUsr}</div>${dataHora}</div>`;
+        let boxMsg = `<div id="msg-box" class="msg_enviada d-flex flex-column" ><h5 class="nome_enviado">Caio</h5><div class="box_msg_enviada">${txtUsr}</div>${dataHora}</div>`;
         let boxMsgElement = new DOMParser().parseFromString(boxMsg, "text/html").getElementById('msg-box');
         coproMsg.appendChild(boxMsgElement);
 
@@ -99,8 +99,7 @@ function inserirMsgUsr(msgUsr) {
     }
 }
 
-//let index = 0;
-
+let index = 0;
 function inserirMsgBot(msg) {
     let sysTime = new Date();
     //let sysTime = Date.now();
@@ -108,11 +107,13 @@ function inserirMsgBot(msg) {
     let horas = tratamentoDigitos(sysTime.getHours()) + ":" + tratamentoDigitos(sysTime.getMinutes()) + ":" + tratamentoDigitos(sysTime.getSeconds());
     let dia = tratamentoDigitos(sysTime.getDay()) + "/" + tratamentoDigitos(sysTime.getMonth()) + "/" + tratamentoDigitos(sysTime.getFullYear());
 
+    let idUnico = `msg-box-recebida_${index}`
     console.log("foi bot");
+    console.log(idUnico);
     let txtUsr = `<p id="txtbot">${msg}</p>`;
     let dataHora = `<h6 class="data_hora">${horas + " | " + dia}</h6>`;
-    let boxMsg = `<div id="msg-box-recebida" class="msg_recbida d-flex flex-column" ><h5 class="nome_recebido">Lia</h5><div class="box_msg_recebida">${txtUsr}</div>${dataHora}</div>`;
-    let boxMsgElement = new DOMParser().parseFromString(boxMsg, "text/html").getElementById('msg-box-recebida');
+    let boxMsg = `<div id="${idUnico}" class="msg_recbida d-flex flex-column" ><h5 class="nome_recebido">Jade</h5><div class="box_msg_recebida">${txtUsr}</div>${dataHora}</div>`;
+    let boxMsgElement = new DOMParser().parseFromString(boxMsg, "text/html").getElementById(idUnico);
       
     coproMsg.appendChild(boxMsgElement);
     
@@ -121,9 +122,17 @@ function inserirMsgBot(msg) {
     	criarBtnsSatifacao();
     }
     
-    sendMessageToVoice(resposta);  
-//    sendMessageToVoice(resposta, index);  
-//    index++;
+//    if(msg == "Podemos declarar um vetor de cinco posições colocando como tipo de dado int, o nome do vetor, e entre colchetes colocar o número cinco."){
+//    	console.log('');
+//    }
+//    
+//	if(msg == "Minha resposta te ajudou?"){
+//    	
+//    }
+    
+    // sendMessageToVoice(resposta);  
+   sendMessageToVoice(msg, idUnico);  
+   index++;
     	
     	//    sendMessageToVoice(msg);
     
@@ -185,17 +194,27 @@ let criarBtnsSatifacao = () =>{
 	chat.appendChild(divBtns);
 
 	btnSim.addEventListener('click', function() {
-		callBot("0");
+		callBot("sim");
 		btnSim.disabled = true;
 		btnNao.disabled = true;
 		inputUsuario.disabled = false;
 	});
 	btnNao.addEventListener('click', function() {
-		callBot("1");
+		callBot("nao");
 		btnSim.disabled = true;
 		btnNao.disabled = true;
 		inputUsuario.disabled = false;
 	});
+}
+
+let criarBalaoImg = () =>{
+	var div = document.createElement("div");
+	let playbtn = document.createElement("button");
+	playbtn.classList.add("btn", "btn-primary", "btn-play");
+	let i = document.createElement('i');
+	i.classList.add('fas', 'fa-play');
+	
+	
 }
 
 navOnElement(coproMsg);

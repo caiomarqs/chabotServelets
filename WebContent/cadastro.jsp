@@ -9,6 +9,8 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>JadeChatbot - Assistente Virtual</title>
 
+    <link rel="shortcut icon" href="images/jade_logo_x32.png" sizes="16x16 32x32" type="image/png"> 
+
     <!-- bootstrap core -->
     <link rel="stylesheet" href="css/compiler/bootstrap/bootstrap.css">
 

@@ -1,5 +1,5 @@
-<!-- <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%> -->
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="pt-br">
 
@@ -8,6 +8,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>JadeChatbot - Assistente Virtual</title>
+
+    <link rel="shortcut icon" href="images/jade_logo_x32.png" sizes="16x16 32x32" type="image/png"> 
 
     <!-- bootstrap core -->
     <link rel="stylesheet" href="css/compiler/bootstrap/bootstrap.css">
@@ -57,7 +59,7 @@
 
                     <!-- cadastro e login -->
                     <ul class="navbar-nav d-none d-lg-flex ml-2 order-3">
-                        <li class="nav-item"><a class="nav-link" href="#" id="btn-nav">(nome)</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#" id="btn-nav">Caio</a></li>
                         <li class="nav-item"><a class="nav-link" href="" id="btn-nav" data-toggle="modal"
                                 data-target=".bd-login">Configurações</a></li>
                     </ul>
@@ -67,7 +69,7 @@
                     <!-- cadatro e login para mobile -->
                     <ul class="navbar-nav d-lg-none">
                         <li class="dropdown-divider"></li>
-                        <li class="nav-item"><a class="nav-link" href="#" id="btn-nav">(nome)</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#" id="btn-nav">Caio</a></li>
                         <li class="nav-item"><a class="nav-link" href="" id="btn-nav" data-toggle="modal"
                                 data-target=".bd-login">Configurações</a></li>
                     </ul>

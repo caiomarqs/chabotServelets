@@ -44,6 +44,7 @@ btnRecord.addEventListener("click", function(event) {
 
 function gerarBlob(blob) {
 	sendBlobToText(blob);
+	console.log("gerandoBlob");
 }
 
 function sendBlobToText(blob) {
