@@ -45,12 +45,16 @@ public class STT extends HttpServlet {
 
 		IamOptions options = new IamOptions.Builder()
 				// Colocar a sua APIKEY
-				.apiKey("GV21tRtFIJ-EUKLTuKl1Xr4USdAYK7B9WInkbXfJ4nLs").build();
+				.apiKey("bL140DnTUZAM6xuym0ERZrzOnW9zC3BNMMLMXT0hixij").build();
 
 		SpeechToText service = new SpeechToText(options);
 
 		RecognizeOptions recognizeOptions = new RecognizeOptions.Builder().audio(tempFile)
-				.contentType(HttpMediaType.AUDIO_WAV).model("pt-BR_BroadbandModel").build();
+				.contentType(HttpMediaType.AUDIO_WAV)
+				.model("pt-BR_BroadbandModel")
+				.acousticCustomizationId("5be7a6a4-6bc8-4331-9c39-2d81423957cc")
+				.customizationId("91f977d7-d099-4310-b12a-8cb9193f71a2")
+				.build();
 
 		SpeechRecognitionResults transcript = service.recognize(recognizeOptions).execute().getResult();
 

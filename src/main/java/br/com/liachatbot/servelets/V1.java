@@ -1,12 +1,10 @@
 package br.com.liachatbot.servelets;
 
-import java.io.BufferedWriter;
 import java.io.File;
-import java.io.FileWriter;
+import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.PrintStream;
+import java.io.OutputStream;
 import java.io.PrintWriter;
-import java.io.Writer;
 import java.util.ArrayList;
 
 import javax.servlet.ServletException;
@@ -30,11 +28,12 @@ import com.ibm.watson.assistant.v1.model.MessageResponse;
 public class V1 extends HttpServlet {
 	private Context context = null;
 	private static final long serialVersionUID = 1L;
-	
+
+	ArrayList<MessageResponse> arrayLogGlobal = new ArrayList<MessageResponse>();
+
 	String IdAnterior = "";
-	ArrayList<MessageResponse> arrayLog = new ArrayList<MessageResponse>();
+
 	boolean exitsFile = false;
-	
 
 	/**
 	 * @see HttpServlet#HttpServlet()
@@ -69,10 +68,10 @@ public class V1 extends HttpServlet {
 		response.setContentType("application/json");
 		PrintWriter out = response.getWriter();
 
-		System.out.println(msgResponse);
+//		System.out.println(msgResponse); //se descomentar saiba que o log vai ficar bugado
 
 		createLog(msgResponse);
-		
+
 		out.println(new Gson().toJson(msgResponse.getOutput().getText()));
 
 //		response.setContentType("application/json");
@@ -110,42 +109,74 @@ public class V1 extends HttpServlet {
 		return response;
 	}
 
-	//gereação de arquivo
-	void createLog(MessageResponse msgResponse) throws IOException {	
+	// contador de controle
+	boolean verificador = false;
+
+	// gereação de arquivo
+	void createLog(MessageResponse msgResponse) throws IOException {
+
+		// captura o Id da conversa
 		String IdAtual = msgResponse.getContext().getConversationId();
-		MessageInput triggerBot = msgResponse.getInput();
-		
-		if (IdAtual.equals(IdAnterior)) {
-			arrayLog.add(msgResponse);
-			IdAnterior = msgResponse.getContext().getConversationId();
-		}
-		
-		if(IdAtual.equals(IdAnterior) ==  false) {
-//			File f = new File("");
-//			System.out.println("Caminho absoluto: " + f.getAbsolutePath());
-			String pathLog = "conversa_"+IdAnterior+".json";
-			
-			
-			PrintStream o = new PrintStream(new File(pathLog));
-			System.setOut(o);
-			
-			for (int i = 0; i < arrayLog.size() ; i++) {
-				
-				if(i == 0) {
-					System.out.println("["+arrayLog.get(i)+",");
-				}
-				
-				System.out.println(arrayLog.get(i)+",");
-				
-				if((arrayLog.size() -1) == i) {
-					System.out.println(arrayLog.get(i)+"]");	
-				}
+
+		// caso não exista IdAnterior
+		if (verificador == false) {
+			arrayLogGlobal.add(msgResponse); // vai adicionar a primeira posicao
+			IdAnterior = IdAtual; // vai setar um IdAnterior
+			verificador = true; // indica se tem um IdAnterior
+		} else {
+			if (IdAtual.equals(IdAnterior) == true) {
+				arrayLogGlobal.add(msgResponse); // adiociona a n posicao no vetor
+				IdAnterior = IdAtual; // indica o IdAnterior da execucao
+				verificador = true; // indica se tem um id anterior
 			}
-			
-			arrayLog.clear();
-			arrayLog.add(msgResponse);
-			IdAnterior = msgResponse.getContext().getConversationId();
+			// se o IdAnterior não for igual é uma nova conversa
+			if (IdAtual.equals(IdAnterior) == false) {
+
+				// cria o arquivo da antiga conversa
+				criarArquivo(IdAnterior, arrayLogGlobal);
+
+				// limpa o array que foi gravado no log
+				arrayLogGlobal.clear();
+
+				// adiociona a primeira pos do array
+				arrayLogGlobal.add(msgResponse);
+				IdAnterior = IdAtual; // indica o IdAnterior a excucao
+				verificador = true; // tem um IdAnterior
+			}
+		}
+	}
+
+	void criarArquivo(String IdAnteriorMetodo, ArrayList<MessageResponse> arrayLog) throws IOException {
+
+		String workingDirectory = System.getProperty("user.dir");
+
+		String pathLog = workingDirectory + "/logs/conversa_" + IdAnteriorMetodo + ".json";
+
+//		PrintStream file = new PrintStream(new File(pathLog));
+//		System.setOut(file);
+		
+		OutputStream outputStream = new FileOutputStream(new File(pathLog));
+
+		for (int i = 0; i < arrayLog.size(); i++) {
+
+			if (i == 0) {
+//				System.out.println("[" + arrayLog.get(i) + ",");
+				outputStream.write(("[" + arrayLog.get(i) + ",").getBytes("UTF-8"));
+			}
+
+			if (i != 0) {
+//				System.out.println(arrayLog.get(i) + ",");	
+				outputStream.write((arrayLog.get(i) + ",").getBytes("UTF-8"));
+
+			}
+
+			if ((arrayLog.size() - 1) == i) {
+//				System.out.println(arrayLog.get(i) + "]");
+				outputStream.write((arrayLog.get(i) + "]").getBytes("UTF-8"));
+			}
 		}
 
+		outputStream.flush();
+		outputStream.close();
 	}
 }

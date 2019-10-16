@@ -62,4 +62,6 @@ function createAudioElement(blob, idUnico) {
 	playbtn.addEventListener('click', function() {
 		audio.play();
 	});
+	
+	scrollSmoothToBottom(coproMsg);
 }

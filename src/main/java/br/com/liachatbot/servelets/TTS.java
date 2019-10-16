@@ -29,8 +29,8 @@ public class TTS extends HttpServlet {
 String msg = req.getParameter("question");
 		
 		IamOptions options = new IamOptions.Builder()
-				// Colocar a sua APIKEY
-				.apiKey("0Uhvyca9uNz5_3ZNROkPQys_fciV8Ydpl7QBUf9Xbobt")
+//				.apiKey("F4EKYbfSEtlSmiHXe59mtBUTFF5dWGZJE8VB3cNYc7DD") //api propria com 10000 caracteres.
+				.apiKey("XrDQBkXgktxo9dD41pZCuyt_9kixBSckxDEtfoCr4-CE") //api da ibm
 				.build();
 		
 		TextToSpeech service = new TextToSpeech(options);

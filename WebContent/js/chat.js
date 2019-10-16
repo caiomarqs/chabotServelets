@@ -65,8 +65,8 @@ function inserirMsgUsr(msgUsr) {
     let sysTime = new Date();
     //let sysTime = Date.now();
 
-    let horas = tratamentoDigitos(sysTime.getHours()) + ":" + tratamentoDigitos(sysTime.getMinutes()) + ":" + tratamentoDigitos(sysTime.getSeconds());
-    let dia = tratamentoDigitos(sysTime.getDay()) + "/" + tratamentoDigitos(sysTime.getMonth()) + "/" + tratamentoDigitos(sysTime.getFullYear());
+    let horas = sysTime.getHours() + ":" + sysTime.getMinutes() + ":" + sysTime.getSeconds();
+    let dia = sysTime.getDay() + "/" + sysTime.getMonth() + "/" + sysTime.getFullYear();
 
     if (inputUsuario.value == undefined || inputUsuario.value == "" && msgUsr == undefined) {
         inputUsuario.classList.add('no-msg');
@@ -104,9 +104,9 @@ function inserirMsgBot(msg) {
     let sysTime = new Date();
     //let sysTime = Date.now();
 
-    let horas = tratamentoDigitos(sysTime.getHours()) + ":" + tratamentoDigitos(sysTime.getMinutes()) + ":" + tratamentoDigitos(sysTime.getSeconds());
-    let dia = tratamentoDigitos(sysTime.getDay()) + "/" + tratamentoDigitos(sysTime.getMonth()) + "/" + tratamentoDigitos(sysTime.getFullYear());
-
+    let horas = sysTime.getHours() + ":" + sysTime.getMinutes() + ":" + sysTime.getSeconds();
+    let dia = sysTime.getDay() + "/" + sysTime.getMonth() + "/" + sysTime.getFullYear();
+    
     let idUnico = `msg-box-recebida_${index}`
     console.log("foi bot");
     console.log(idUnico);
@@ -196,14 +196,17 @@ let criarBtnsSatifacao = () =>{
 	btnSim.addEventListener('click', function() {
 		callBot("sim");
 		btnSim.disabled = true;
-		btnNao.disabled = true;
-		inputUsuario.disabled = false;
+        btnNao.disabled = true;
+        btnSim.classList.add("btn-clicado");
+        inputUsuario.disabled = false;
+        
 	});
 	btnNao.addEventListener('click', function() {
 		callBot("nao");
 		btnSim.disabled = true;
-		btnNao.disabled = true;
-		inputUsuario.disabled = false;
+        btnNao.disabled = true;
+        btnNao.classList.add("btn-clicado");
+        inputUsuario.disabled = false;
 	});
 }
 

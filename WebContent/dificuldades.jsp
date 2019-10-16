@@ -176,9 +176,6 @@
         <!-- divisao em sections -->
         <section id="dificuldades" class="vh-100">
             <div class="row">
-                <img src="images/OPT2.png" class="col">
-                <img src="images/OPT1.png" class="col">
-                <img src="images/OPT3.png" class="col">
             </div>
         </section>
     </main>
