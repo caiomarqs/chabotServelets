@@ -1,4 +1,4 @@
-package br.com.liachatbot.servelets;
+package br.com.jadechatbot.apis;
 
 import java.io.File;
 import java.io.FileOutputStream;
