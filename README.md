@@ -3,7 +3,7 @@ _Grupo Gallium_
 
 ***
 
-O projeto **Jade-Chatbot** é uma plataforma online de estudos, desenvolvido em JAVA EE e outras tecnologias descritas neste documento. Tem como foco demonstrar a implentação dos serviços(_API's_) da IBM Cloud para o funcionamento de um assistente virtual para auxilo de alunos nas matérias de nivelamento da FIAP
+O projeto **Jade-Chatbot** é uma plataforma online de estudos, desenvolvido em JAVA EE e outras tecnologias descritas neste documento. Tem como foco demonstrar a implentação dos serviços (_API's_) da IBM Cloud para o funcionamento de um assistente virtual para auxilo de alunos nas matérias de nivelamento da FIAP
 
 ***
 
@@ -33,6 +33,7 @@ sass node_modules/bootstrap/scss:css/compiler/bootstrap
 #### Camada de Aplicação
 
 * Java EE
+* Jsp
 * OJDBC
 
 O _back-end_ desenvolvido em Java faz a parte de chamada das _API's_ e administração de usuários seguindo as regras de negócios requiridas pelo o sistema.
