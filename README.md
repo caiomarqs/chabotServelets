@@ -1,14 +1,14 @@
-#JADE-CHATBOT
+# JADE-CHATBOT
 _Grupo Gallium_
 
 ***
 
-O projeto **Jade-Chatbot** È uma plataforma online de estudos, desenvolvido em JAVA EE e outras tecnologias descritas neste documento. Tem como foco demonstrar a implentaÁ„o dos serviÁos(_API's_) da IBM Cloud para o funcionamento de um assistente virtual para auxilo de alunos nas matÈrias de nivelamento da FIAP
+O projeto **Jade-Chatbot** √© uma plataforma online de estudos, desenvolvido em JAVA EE e outras tecnologias descritas neste documento. Tem como foco demonstrar a implenta√ß√£o dos servi√ßos(_API's_) da IBM Cloud para o funcionamento de um assistente virtual para auxilo de alunos nas mat√©rias de nivelamento da FIAP
 
 ***
 
-##Tecnologias
-####Camada de ApresentaÁ„o
+## Tecnologias
+#### Camada de Apresenta√ß√£o
 
 * HTML5;
 * CSS3 com [SCSS](https://sass-lang.com/install);
@@ -16,30 +16,30 @@ O projeto **Jade-Chatbot** È uma plataforma online de estudos, desenvolvido em J
 * Java Script;
 * Jquery.
 
-O desenvolvimento do _front-end_ tem como objetivo ser simples e com poucas dependÍncias, se tem a utilizaÁ„o do SCSS para adminsitraÁ„o das camadas de estilos para qualquer alterÁ„o no arquivos .scss, deve-se compilar novamente os estilos com os seguintes comandos no nÌvel da pasta WebContent
+O desenvolvimento do _front-end_ tem como objetivo ser simples e com poucas depend√™ncias, se tem a utiliza√ß√£o do SCSS para adminsitra√ß√£o das camadas de estilos para qualquer alter√ß√£o no arquivos .scss, deve-se compilar novamente os estilos com os seguintes comandos no n√≠vel da pasta WebContent
 
-**CompilÁ„o autom·tica por alteraÁ„o**
-
-```
-sass --watch node_modules/bootstrap/scss:css/compiler/bootstrap
-```
-
-**CompilÁ„o Est·tica**
+**Compil√ß√£o autom√°tica por altera√ß√£o**
 
 ```
 sass --watch node_modules/bootstrap/scss:css/compiler/bootstrap
 ```
 
-####Camada de AplicaÁ„o
+**Compil√ß√£o Est√°tica**
+
+```
+sass node_modules/bootstrap/scss:css/compiler/bootstrap
+```
+
+#### Camada de Aplica√ß√£o
 
 * Java EE
 * OJDBC
 
-O _back-end_ desenvolvido em Java faz a parte de chamada das _API's_ e administraÁ„o de usu·rios seguindo as regras de negÛcios requiridas pelo o sistema.
+O _back-end_ desenvolvido em Java faz a parte de chamada das _API's_ e administra√ß√£o de usu√°rios seguindo as regras de neg√≥cios requiridas pelo o sistema.
 
-##O Grupo
+## Grupo
 
-O grupo È composto pelos os seguintes integrantes, todos a par de todo o porjeto, entre tanto cada um tem um foco especifico no projeto.
+O grupo √© composto pelos os seguintes integrantes, todos a par de todo o porjeto, entre tanto cada um tem um foco especifico no projeto.
 
 | Nome        | RM           |
 | ------------- | -------------:|
