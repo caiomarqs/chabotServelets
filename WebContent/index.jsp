@@ -93,7 +93,7 @@
                                     </button>
                                 </div>
                                 <div class="modal-body">
-                                    <form class="px-4 py-3">
+                                    <form class="px-4 py-3" action="LoginServelet.jsp">
                                         <div class="form-group">
                                             <label for="exampleDropdownFormEmail1">Email</label>
                                             <input type="email" class="form-control email-modal" id="email-modal"
@@ -160,7 +160,6 @@
 
                 </div>
                 <!-- itens menu -->
-
 
             </div>
         </nav>

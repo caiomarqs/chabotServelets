@@ -791,6 +791,19 @@ body {
   }
 }
 
+/* -Select de truma-*/
+#inputGroupSelect01 {
+  color: #8c8d8e;
+  background-image: none;
+  background-color: #202424;
+  border: 0px solid #07cfb0;
+  width: 100%;
+  margin: 0 0 3em 0;
+}
+#inputGroupSelect01:focus {
+  box-shadow: none;
+}
+
 /* -botao cadastro- */
 .formulario > .form-group > .btn-cadastro {
   width: 12em;

@@ -6,6 +6,7 @@
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/src/test/java"/>
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/src/test/resources"/>
         <wb-resource deploy-path="/" source-path="/src/main/java/br/com/liachatbot/apis"/>
+        <wb-resource deploy-path="/WEB-INF/classes" source-path="/WebContent/WEB-INF/lib"/>
         <property name="context-root" value="Teste3"/>
         <property name="java-output-path" value="/Teste3/target/classes"/>
     </wb-module>

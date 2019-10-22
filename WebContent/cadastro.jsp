@@ -1,3 +1,5 @@
+<%@page import="br.com.jadechatbot.dao.CadastroDAO"%>
+<%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -180,22 +182,32 @@
                         <p>Se cadastre e tire suas dúvidas comigo :)</p>
                     </div>
                     <div class="col-12 col-lg-8 formulario">
-                        <div class="form-group">
+                        <form class="form-group" action = "CadastroServelet" method = "POST" id="form-cadastro">
                             <h1>cadastro</h1>
-                            <input type="text" class="form-control" maxlength="60" id="nome" placeholder="Nome">
-                            <input type="text" class="form-control" maxlength="120" id="telefone"
-                                placeholder="Telefone">
-                            <input type="email" class="form-control" maxlength="120" id="email" placeholder="Email">
+                            <input type="text" class="form-control" maxlength="60" id="nome" placeholder="Nome" name="nm_usuario">
+                            <input type="text" class="form-control" maxlength="120" id="telefone" placeholder="Telefone" name="nr_telefone">
+                            <input type="email" class="form-control" maxlength="120" id="email" placeholder="Email" name="tx_email">
                             <input type="text" class="form-control" id="data-nasc" maxlength="7"
-                                placeholder="Data de Nascimento">
+                                placeholder="Data de Nascimento" name="dt_nasc">
+                            
+                            <%CadastroDAO cadastroDAO = new CadastroDAO();%>
+                            <%ArrayList<String> optionList = cadastroDAO.selectTurma();%>
+                            <select class="select01 custom-select" id="inputGroupSelect01" name="tb_turma_cd_turma">
+                                <option>Turma</option>
+                                <%for(int i = 0; i < optionList.size(); i++){ %>
+                                	<option><%=optionList.get(i)%></option>	
+                                <% } %>
+                            </select>
                             <input type="password" class="form-control senha1" id="senha" maxlength="16"
-                                placeholder="Senha">
+                                placeholder="Senha" name="tx_senha">
                             <input type="password" class="form-control senha2" id="senha2" maxlength="16"
-                                placeholder="Repita Sua Senha">
-                            <p>*Sua senha deve ter entre 6-18 caracteres.</p>
+                                placeholder="Repita Sua Senha" name="tx_senha2">
+                            <p>*Sua senha deve ter entre 6-18 caracteres.</p>>
+
+
                             <button type="submit" class="btn btn-primary btn-cadastro"
                                 id="btn-cadastrar">Cadastrar</button>
-                        </div>
+                        </form>
 
                     </div>
                 </div>

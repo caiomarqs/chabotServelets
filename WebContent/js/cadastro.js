@@ -150,6 +150,20 @@ btnCadastrar.addEventListener('click', function (e) {
 
     if (retrun1 == true && retrun2 == true && retrun3 == true && retrun4 == true && retrun5 == true) {
         alert('Cadastro feito com sucesso');
+        console.log("callbot");
+        var xhr = new XMLHttpRequest();
+        xhr.open("POST", "CadastroServelet", true);
+        xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded; charset=utf-8");
+        xhr.addEventListener("load", function () {
+            if (xhr.status == 200) {
+            	console.log("Deu bom");
+            } else {
+                console.log(xhr.status);
+                console.log(xhr.responseText);
+            }
+        });
+        var formData = new FormData(document.getElementById("form-cadastro"));
+        xhr.send(formData);
     }
     else {
         for (let index = 0; index < erros.length; index++) {
