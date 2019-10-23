@@ -34,8 +34,3 @@ emailInput2.addEventListener('keyup', function() {
 
 // acoes botoes
 let btnEntrar = document.getElementById('btn-entrar');
-
-btnEntrar.addEventListener('click', function(e) {
-    e.preventDefault();
-    window.location.href='./chat.jsp';
-});

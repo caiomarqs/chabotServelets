@@ -1,136 +1,154 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+
+<%
+	session = request.getSession(false);
+
+	String sessionID = (String) session.getAttribute("userEmail");
+	
+	if(sessionID == null){
+		request.getRequestDispatcher("/index.jsp").forward(request, response);
+	}
+%>
+
 <!DOCTYPE html>
 <html lang="pt-br">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>JadeChatbot - Assistente Virtual</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<title>JadeChatbot - Assistente Virtual</title>
 
-    <link rel="shortcut icon" href="images/jade_logo_x32.png" sizes="16x16 32x32" type="image/png"> 
+<link rel="shortcut icon" href="images/jade_logo_x32.png"
+	sizes="16x16 32x32" type="image/png">
 
-    <!-- bootstrap core -->
-    <link rel="stylesheet" href="css/compiler/bootstrap/bootstrap.css">
+<!-- bootstrap core -->
+<link rel="stylesheet" href="css/compiler/bootstrap/bootstrap.css">
 
-    <!-- FontAwesome -->
-    <link rel="stylesheet" href="node_modules/@fortawesome/fontawesome-free/css/all.css">
+<!-- FontAwesome -->
+<link rel="stylesheet"
+	href="node_modules/@fortawesome/fontawesome-free/css/all.css">
 
-    <!-- estilo proprio -->
-    <link rel="stylesheet" href="css/compiler/bootstrap/style.css">
-    <link rel="stylesheet" href="css/compiler/bootstrap/chat.css">
+<!-- estilo proprio -->
+<link rel="stylesheet" href="css/compiler/bootstrap/style.css">
+<link rel="stylesheet" href="css/compiler/bootstrap/chat.css">
 
 
 </head>
 
 <body>
-    <!-- Navgation -->
-    <header>
-        <nav id="navbar" class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark">
-            <div class="container">
+	<!-- Navgation -->
+	<header>
+		<nav id="navbar"
+			class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark">
+			<div class="container">
 
-                <!-- logo -->
-                <a href="index.jsp" class="navbar-brand">
-                    <img src="images/logoBold-SfV.png" alt="Logo Fiap">
-                </a>
-                <!-- logo -->
+				<!-- logo -->
+				<a href="index.jsp" class="navbar-brand"> <img
+					src="images/logoBold-SfV.png" alt="Logo Fiap">
+				</a>
+				<!-- logo -->
 
-                <!-- botão hambuger -->
-                <div class="d-flex ml-auto">
-                    <button class="navbar-toggler collapsed" type="button" data-toggle="collapse"
-                        data-target="#navbarItens" aria-controls="navbarItens" aria-expanded="false"
-                        aria-label="Toggle navigation">
-                        <span class="navbar-toggler-icon"></span>
-                    </button>
-                </div>
-                <!-- botão hambuger -->
-
-
-                <!-- itens menu -->
-                <div class="navbar-collapse collapse" id="navbarItens">
-
-                    <!-- itens ao meio-->
-                    <ul class="navbar-nav mx-auto order-1">
-                        <!-- <li class="nav-item"><a class="nav-link" href=""></a></li> -->
-                    </ul>
-                    <!-- itens ao meio-->
+				<!-- botão hambuger -->
+				<div class="d-flex ml-auto">
+					<button class="navbar-toggler collapsed" type="button"
+						data-toggle="collapse" data-target="#navbarItens"
+						aria-controls="navbarItens" aria-expanded="false"
+						aria-label="Toggle navigation">
+						<span class="navbar-toggler-icon"></span>
+					</button>
+				</div>
+				<!-- botão hambuger -->
 
 
-                    <!-- cadastro e login -->
-                    <ul class="navbar-nav d-none d-lg-flex ml-2 order-3">
-                        <li class="nav-item"><a class="nav-link" href="#" id="btn-nav">Caio</a></li>
-                        <li class="nav-item"><a class="nav-link" href="" id="btn-nav" data-toggle="modal"
-                                data-target=".bd-login">Configurações</a></li>
-                    </ul>
-                    <!-- cadastro e login -->
+				<!-- itens menu -->
+				<div class="navbar-collapse collapse" id="navbarItens">
+
+					<!-- itens ao meio-->
+					<ul class="navbar-nav mx-auto order-1">
+						<!-- <li class="nav-item"><a class="nav-link" href=""></a></li> -->
+					</ul>
+					<!-- itens ao meio-->
 
 
-                    <!-- cadatro e login para mobile -->
-                    <ul class="navbar-nav d-lg-none">
-                        <li class="dropdown-divider"></li>
-                        <li class="nav-item"><a class="nav-link" href="#" id="btn-nav">Caio</a></li>
-                        <li class="nav-item"><a class="nav-link" href="" id="btn-nav" data-toggle="modal"
-                                data-target=".bd-login">Configurações</a></li>
-                    </ul>
-                    <!-- cadatro e login para mobile -->
-                </div>
-                <!-- itens menu -->
+					<!-- cadastro e login -->
+					<ul class="navbar-nav d-none d-lg-flex ml-2 order-3">
+						<c:if test="${not empty userName}">
+							<li class="nav-item"><a class="nav-link" href="#"
+								id="btn-nav-nome">${userName}</a></li>
+						</c:if>
+
+						<li class="nav-item"><a class="nav-link" href="./ConfiguracaoServlet" id="btn-nav-config"
+							data-toggle="modal" data-target=".bd-login">Configurações</a></li>
+					</ul>
+					<!-- cadastro e login -->
 
 
-            </div>
-        </nav>
-    </header>
-    <!-- Navgation -->
+					<!-- cadatro e login para mobile -->
+					<ul class="navbar-nav d-lg-none">
+						<li class="dropdown-divider"></li>
+						<c:if test="${not empty userName}">
+							<li class="nav-item"><a class="nav-link" href="#"
+								id="btn-nav">${userName}</a></li>
+						</c:if>
+						<li class="nav-item"><a class="nav-link" href="" id="btn-nav"
+							data-toggle="modal" data-target=".bd-login">Configurações</a></li>
+					</ul>
+					<!-- cadatro e login para mobile -->
+				</div>
+				<!-- itens menu -->
+
+
+			</div>
+		</nav>
+	</header>
+	<!-- Navgation -->
 
 
 
-    <!-- Corpo do Site -->
-    <main>
+	<!-- Corpo do Site -->
+	<main> <!-- divisao em sections --> <!-- Section de Conteudo -->
+	<section id="conteudo">
+		<!-- div do chat bot -->
+		<div id="chat" class="vh-100 chat">
+			<div class="row d-block">
+				<div class="col-12 fake-nav"></div>
+				<div id="corpo-msg" class="col-12 conversa d-flex"></div>
+				<div class="col-12 barra d-flex">
+					<input type="text" class="form-control flex-grow-1" id="input-user"
+						placeholder="Faça sua pergunta">
+					<button id="btn-mic" class="btn btn-primary">
+						<i id="mic" class="fas fa-microphone-alt"></i>
+					</button>
+					<button id="btn-msg" class="btn btn-primary">
+						<i id="msg" class="fas fa-paper-plane"></i>
+					</button>
+				</div>
+			</div>
+		</div>
+		<!-- div do chat bot -->
+	</section>
+	<!-- Section de Conteudo --> <!-- divisao em sections --> </main>
+	<!-- Corpo do Site -->
 
-        <!-- divisao em sections -->
-        <!-- Section de Conteudo -->
-        <section id="conteudo">
-            <!-- div do chat bot -->
-            <div id="chat" class="vh-100 chat">
-                <div class="row d-block">
-                    <div class="col-12 fake-nav"></div>
-                    <div id="corpo-msg" class="col-12 conversa d-flex">
-
-                    </div>
-                    <div class="col-12 barra d-flex">
-                        <input type="text" class="form-control flex-grow-1" id="input-user"
-                            placeholder="Faça sua pergunta">
-                        <button id="btn-mic" class="btn btn-primary"><i id="mic"
-                                class="fas fa-microphone-alt"></i></button>
-                        <button id="btn-msg" class="btn btn-primary"><i id="msg"
-                                class="fas fa-paper-plane"></i></button>
-                    </div>
-                </div>
-            </div>
-            <!-- div do chat bot -->
-        </section>
-        <!-- Section de Conteudo -->
-        <!-- divisao em sections -->
-    </main>
-    <!-- Corpo do Site -->
-
-    <!-- footer -->
-    <footer>
-        <div vw class="enabled">
-            <div vw-access-button class="active"></div>
-            <div vw-plugin-wrapper>
-                <div class="vw-plugin-top-wrapper"></div>
-            </div>
-        </div>
-    </footer>
-    <!-- footer -->
+	<!-- footer -->
+	<footer>
+		<div vw class="enabled">
+			<div vw-access-button class="active"></div>
+			<div vw-plugin-wrapper>
+				<div class="vw-plugin-top-wrapper"></div>
+			</div>
+		</div>
+	</footer>
+	<!-- footer -->
 </body>
 
 
 
 
-<script src="js/Recorderjs-master/dist/recorder.js"></script> 
+<script src="js/Recorderjs-master/dist/recorder.js"></script>
 <script src="node_modules/jquery/dist/jquery.js"></script>
 <script src="node_modules/jquery-mask-plugin/dist/jquery.mask.js"></script>
 <script src="node_modules/popper.js/dist/umd/popper.js"></script>
@@ -145,7 +163,7 @@
 <!-- libras -->
 <script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
 <script>
-    new window.VLibras.Widget('https://vlibras.gov.br/app');
+	new window.VLibras.Widget('https://vlibras.gov.br/app');
 </script>
 
 </html>

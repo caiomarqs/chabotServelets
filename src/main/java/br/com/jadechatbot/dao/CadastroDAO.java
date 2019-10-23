@@ -8,14 +8,28 @@ import java.util.ArrayList;
 import br.com.jadechatbot.beans.Usuario;
 import br.com.jadechatbot.conn.Conn;
 
+/**
+ * DAO com os métodos que excutam as interações referente ao cadastro do com o Banco de Dados.
+ * @author rm83220, rm83211, rm83227
+ *
+ */
 public class CadastroDAO {
 
 	private Connection conn;
-
+	
+	/**
+	 * Método que chama a connection com a instância da DAO.
+	 * @throws Exception
+	 */
 	public CadastroDAO() throws Exception {
 		this.conn = new Conn().getConnection();
 	}
 
+	/**
+	 * Método que retorna um lista dos nomes das turmas existenes no sistema
+	 * @return
+	 * @throws Exception
+	 */
 	public ArrayList<String> selectTurma() throws Exception {
 
 		ArrayList<String> listaTurmas = new ArrayList<String>();
@@ -34,6 +48,12 @@ public class CadastroDAO {
 		return listaTurmas;
 	}
 
+	/**
+	 * Método que executa o cadastro do usuário no sistema.
+	 * @param usuario
+	 * @return
+	 * @throws Exception
+	 */
 	public int cadastroUsuario(Usuario usuario) throws Exception {
 
 		String sqlQuerry = "INSERT INTO tb_usuario"
@@ -54,6 +74,12 @@ public class CadastroDAO {
 		return resultSelect;
 	}
 	
+	/**
+	 * Método que retorna o número da turma em relação ao seu nome.
+	 * @param nomeTurma
+	 * @return
+	 * @throws Exception
+	 */
 	public int selectRelacaoTrumas(String nomeTurma) throws Exception {
 
 		int numeroTurma = 0;
@@ -72,5 +98,40 @@ public class CadastroDAO {
 		pdst.close();
 
 		return numeroTurma;
+	}
+	
+	/**
+	 * Método que consulta a existência do email no sistema. 
+	 * @param emailUsr
+	 * @return
+	 * @throws Exception
+	 */
+	public boolean selectVerificacaoEmail(String emailUsr) throws Exception {
+
+		boolean emailExists = true;
+
+		String sqlQuerry = "SELECT * FROM TB_USUARIO WHERE TX_EMAIL = ?";
+		PreparedStatement pdst = this.conn.prepareStatement(sqlQuerry);
+		pdst.setString(1, emailUsr);
+		
+		ResultSet resultSelect = pdst.executeQuery();
+		
+		String emailBanco = "";
+		
+		if(resultSelect.next()) {
+			emailBanco = resultSelect.getString("TX_EMAIL");
+		}
+
+		if(emailBanco.equals(emailUsr)) {
+			emailExists = true;
+		}
+		else {
+			emailExists = false;
+		}
+
+		resultSelect.close();
+		pdst.close();
+
+		return emailExists;
 	}
 }

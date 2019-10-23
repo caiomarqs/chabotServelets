@@ -1,7 +1,7 @@
 function callBot(msg) {
     console.log("callbot");
     var xhr = new XMLHttpRequest();
-    xhr.open("POST", "V1", true);// ("method, "action|url|Servelet",
+    xhr.open("POST", "V1", true);// ("method, "action|url|Servlet",
     // "sicrono|assincro") ---> estudar ajax
     // onload page
     xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded; charset=utf-8");
@@ -26,7 +26,7 @@ function callBot(msg) {
     xhr.send(data);
 }
 
-// chamando a servelet que controla a api
+// chamando a servlet que controla a api
 window.onload = callBot("");
 
 // animação dos botoes do chat
@@ -77,13 +77,13 @@ function inserirMsgUsr(msgUsr) {
 
         // let txtCapturado = (inputUsuario.value) == undefined ||
         // (inputUsuario.value) == "" ? msgUsr : inputUsuario.value;
-
+    	let nomeUsr = document.getElementById('btn-nav-nome').innerHTML;
         // condicao ternaria para tratamendo de msg programadas
         let txtCapturado = (inputUsuario.value) == undefined || (inputUsuario.value) == "" ? msgUsr : inputUsuario.value;
 
         let txtUsr = `<p>${txtCapturado}</p>`;
         let dataHora = `<h6 class="data_hora">${horas + " | " + dia}</h6>`;
-        let boxMsg = `<div id="msg-box" class="msg_enviada d-flex flex-column" ><h5 class="nome_enviado">Caio</h5><div class="box_msg_enviada">${txtUsr}</div>${dataHora}</div>`;
+        let boxMsg = `<div id="msg-box" class="msg_enviada d-flex flex-column" ><h5 class="nome_enviado">${nomeUsr}</h5><div class="box_msg_enviada">${txtUsr}</div>${dataHora}</div>`;
         let boxMsgElement = new DOMParser().parseFromString(boxMsg, "text/html").getElementById('msg-box');
         coproMsg.appendChild(boxMsgElement);
 
@@ -212,5 +212,12 @@ let criarBalaoImg = () => {
 
 
 }
+
+let btnConfiguracoes = document.getElementById('btn-nav-config');
+
+btnConfiguracoes.addEventListener('click', function (e) {
+	document.location.href="ConfiguracaoServlet";
+});
+
 
 navOnElement(coproMsg);

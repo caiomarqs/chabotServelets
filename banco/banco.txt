@@ -1,0 +1,155 @@
+-----------------------[                 DLL                    ]----------------------
+-- Gerado por Oracle SQL Developer Data Modeler 19.2.0.182.1216
+--   em:        2019-10-23 09:47:14 BRT
+--   site:      Oracle Database 12c
+--   tipo:      Oracle Database 12c
+
+
+
+CREATE TABLE tb_campus (
+    cd_campus   NUMBER(8) NOT NULL,
+    nm_campus   VARCHAR2(50) NOT NULL
+);
+
+ALTER TABLE tb_campus ADD CONSTRAINT tb_campus_pk PRIMARY KEY ( cd_campus );
+
+CREATE TABLE tb_conversa (
+    cd_conversa        NUMBER(20) NOT NULL,
+    ds_conversa        VARCHAR2(255) NOT NULL,
+    tb_usuario_cd_rm   NUMBER(10) NOT NULL
+);
+
+ALTER TABLE tb_conversa ADD CONSTRAINT tb_conversa_pk PRIMARY KEY ( cd_conversa );
+
+CREATE TABLE tb_cur_cam (
+    tb_campus_cd_campus   NUMBER(8) NOT NULL,
+    tb_curso_cd_curso     NUMBER(8) NOT NULL
+);
+
+ALTER TABLE tb_cur_cam ADD CONSTRAINT tb_cur_cam_pk PRIMARY KEY ( tb_campus_cd_campus,
+                                                                  tb_curso_cd_curso );
+
+CREATE TABLE tb_curso (
+    cd_curso     NUMBER(8) NOT NULL,
+    nm_curso     VARCHAR2(50) NOT NULL,
+    qt_h_curso   NUMBER(10, 2)
+);
+
+ALTER TABLE tb_curso ADD CONSTRAINT tb_curso_pk PRIMARY KEY ( cd_curso );
+
+CREATE TABLE tb_disciplina (
+    cd_disciplina     NUMBER(8) NOT NULL,
+    nm_disciplina     VARCHAR2(50),
+    qt_h_disciplina   NUMBER(10, 2)
+);
+
+ALTER TABLE tb_disciplina ADD CONSTRAINT tb_disciplina_pk PRIMARY KEY ( cd_disciplina );
+
+CREATE TABLE tb_tur_disp (
+    tb_turma_cd_turma             NUMBER(8) NOT NULL,
+    tb_disciplina_cd_disciplina   NUMBER(8) NOT NULL
+);
+
+ALTER TABLE tb_tur_disp ADD CONSTRAINT tb_tur_disp_pk PRIMARY KEY ( tb_disciplina_cd_disciplina,
+                                                                    tb_turma_cd_turma );
+
+CREATE TABLE tb_turma (
+    cd_turma            NUMBER(8) NOT NULL,
+    nm_turma            VARCHAR2(10) NOT NULL,
+    dt_inicio_turma     DATE,
+    dt_final_turma      DATE,
+    tb_curso_cd_curso   NUMBER(8) NOT NULL
+);
+
+ALTER TABLE tb_turma ADD CONSTRAINT tb_turma_pk PRIMARY KEY ( cd_turma );
+
+CREATE TABLE tb_usuario (
+    cd_rm               NUMBER(10) NOT NULL,
+    nm_usuario          VARCHAR2(50) NOT NULL,
+    tx_email            VARCHAR2(60),
+    nr_telefone         VARCHAR2(20),
+    dt_nasc             DATE,
+    tx_senha            VARCHAR2(16),
+    nr_nivel_acesso     CHAR(1),
+    tb_turma_cd_turma   NUMBER(8) NOT NULL
+);
+
+ALTER TABLE tb_usuario ADD CONSTRAINT tb_usuario_pk PRIMARY KEY ( cd_rm );
+
+ALTER TABLE tb_conversa
+    ADD CONSTRAINT tb_conversa_tb_usuario_fk FOREIGN KEY ( tb_usuario_cd_rm )
+        REFERENCES tb_usuario ( cd_rm );
+
+ALTER TABLE tb_cur_cam
+    ADD CONSTRAINT tb_cur_cam_tb_campus_fk FOREIGN KEY ( tb_campus_cd_campus )
+        REFERENCES tb_campus ( cd_campus );
+
+ALTER TABLE tb_cur_cam
+    ADD CONSTRAINT tb_cur_cam_tb_curso_fk FOREIGN KEY ( tb_curso_cd_curso )
+        REFERENCES tb_curso ( cd_curso );
+
+ALTER TABLE tb_tur_disp
+    ADD CONSTRAINT tb_tur_disp_tb_disciplina_fk FOREIGN KEY ( tb_disciplina_cd_disciplina )
+        REFERENCES tb_disciplina ( cd_disciplina );
+
+ALTER TABLE tb_tur_disp
+    ADD CONSTRAINT tb_tur_disp_tb_turma_fk FOREIGN KEY ( tb_turma_cd_turma )
+        REFERENCES tb_turma ( cd_turma );
+
+ALTER TABLE tb_turma
+    ADD CONSTRAINT tb_turma_tb_curso_fk FOREIGN KEY ( tb_curso_cd_curso )
+        REFERENCES tb_curso ( cd_curso );
+
+ALTER TABLE tb_usuario
+    ADD CONSTRAINT tb_usuario_tb_turma_fk FOREIGN KEY ( tb_turma_cd_turma )
+        REFERENCES tb_turma ( cd_turma );
+
+
+
+-- Relatório do Resumo do Oracle SQL Developer Data Modeler: 
+-- 
+-- CREATE TABLE                             8
+-- CREATE INDEX                             0
+-- ALTER TABLE                             15
+-- CREATE VIEW                              0
+-- ALTER VIEW                               0
+-- CREATE PACKAGE                           0
+-- CREATE PACKAGE BODY                      0
+-- CREATE PROCEDURE                         0
+-- CREATE FUNCTION                          0
+-- CREATE TRIGGER                           0
+-- ALTER TRIGGER                            0
+-- CREATE COLLECTION TYPE                   0
+-- CREATE STRUCTURED TYPE                   0
+-- CREATE STRUCTURED TYPE BODY              0
+-- CREATE CLUSTER                           0
+-- CREATE CONTEXT                           0
+-- CREATE DATABASE                          0
+-- CREATE DIMENSION                         0
+-- CREATE DIRECTORY                         0
+-- CREATE DISK GROUP                        0
+-- CREATE ROLE                              0
+-- CREATE ROLLBACK SEGMENT                  0
+-- CREATE SEQUENCE                          0
+-- CREATE MATERIALIZED VIEW                 0
+-- CREATE MATERIALIZED VIEW LOG             0
+-- CREATE SYNONYM                           0
+-- CREATE TABLESPACE                        0
+-- CREATE USER                              0
+-- 
+-- DROP TABLESPACE                          0
+-- DROP DATABASE                            0
+-- 
+-- REDACTION POLICY                         0
+-- TSDP POLICY                              0
+-- 
+-- ORDS DROP SCHEMA                         0
+-- ORDS ENABLE SCHEMA                       0
+-- ORDS ENABLE OBJECT                       0
+-- 
+-- ERRORS                                   0
+-- WARNINGS                                 0
+
+
+
+-----------------------[                 DML                    ]----------------------

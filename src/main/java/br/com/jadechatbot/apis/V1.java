@@ -22,7 +22,8 @@ import com.ibm.watson.assistant.v1.model.MessageOptions;
 import com.ibm.watson.assistant.v1.model.MessageResponse;
 
 /**
- * Servlet implementation class V1
+ * Classe que faz a comunicaÃ§Ã£o com a API do Watson Assistant da IBM Cloud
+ * @author rm83220
  */
 @WebServlet("/V1")
 public class V1 extends HttpServlet {
@@ -68,24 +69,25 @@ public class V1 extends HttpServlet {
 		response.setContentType("application/json");
 		PrintWriter out = response.getWriter();
 
-//		System.out.println(msgResponse); //se descomentar saiba que o log vai ficar bugado
-
-		createLog(msgResponse);
+		logControler(msgResponse);
 
 		out.println(new Gson().toJson(msgResponse.getOutput().getText()));
-
-//		response.setContentType("application/json");
-//		response.getWriter().write();
 	}
-
+	
+	
+	/**
+	 * Metodo responsavel pela chamada do Watson Assistant apartir de uma menssagem.
+	 * @param
+	 * @return
+	 */
 	private MessageResponse assistantAPICall(String msg) {
 
-		// Configuração de autenticação do serviço
+		// Configuraï¿½ï¿½o de autenticaï¿½ï¿½o do serviï¿½o
 		IamOptions options = new IamOptions.Builder()
 				// Colocar a sua APIKEY
 				.apiKey("L1bJvJsHYsE6dLMijcI1fHfP2RXOvOppyq-h0-zS3Bm7").build();
 
-		// Criando o objeto do serviço desejado
+		// Criando o objeto do serviï¿½o desejado
 		Assistant service = new Assistant("2018-02-16", options);
 		// Colocar a sua WORKSPACEID
 		String skillID = "fbaefda1-78a7-4dfe-8b02-a620abaf0c28";
@@ -111,14 +113,18 @@ public class V1 extends HttpServlet {
 
 	// contador de controle
 	boolean verificador = false;
-
-	// gereação de arquivo
-	void createLog(MessageResponse msgResponse) throws IOException {
+	
+	
+	/**
+	 * Metodo responsavel pela gestÃ£o dos logs
+	 * @param
+	 */
+	public void logControler(MessageResponse msgResponse) throws IOException {
 
 		// captura o Id da conversa
 		String IdAtual = msgResponse.getContext().getConversationId();
 
-		// caso não exista IdAnterior
+		// caso nÃ£o exista IdAnterior
 		if (verificador == false) {
 			arrayLogGlobal.add(msgResponse); // vai adicionar a primeira posicao
 			IdAnterior = IdAtual; // vai setar um IdAnterior
@@ -129,7 +135,7 @@ public class V1 extends HttpServlet {
 				IdAnterior = IdAtual; // indica o IdAnterior da execucao
 				verificador = true; // indica se tem um id anterior
 			}
-			// se o IdAnterior não for igual é uma nova conversa
+			// se o IdAnterior nï¿½o for igual ï¿½ uma nova conversa
 			if (IdAtual.equals(IdAnterior) == false) {
 
 				// cria o arquivo da antiga conversa
@@ -145,8 +151,12 @@ public class V1 extends HttpServlet {
 			}
 		}
 	}
-
-	void criarArquivo(String IdAnteriorMetodo, ArrayList<MessageResponse> arrayLog) throws IOException {
+	
+	/**
+	 * Metodo responsavel pela geraÃ§Ã£o de um arquvio .JSON usado como log.
+	 * @param
+	 */
+	public void criarArquivo(String IdAnteriorMetodo, ArrayList<MessageResponse> arrayLog) throws IOException {
 
 		String workingDirectory = System.getProperty("user.dir");
 

@@ -44,4 +44,4 @@ O grupo é composto pelos os seguintes integrantes, todos a par de todo o porjet
 | Guilherme Romualdo Parussolo | 83227 |
 | Helena Faganelo Garcia | 83211 |
 | Julia Moreira |   83237 |
-| Leonardo Machado | |
+| Leonardo Machado | 83244|

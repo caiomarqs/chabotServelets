@@ -1,5 +1,3 @@
-<%@page import="br.com.jadechatbot.dao.CadastroDAO"%>
-<%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
@@ -24,7 +22,7 @@
 
 <!-- estilo proprio -->
 <link rel="stylesheet" href="css/compiler/bootstrap/style.css">
-<link rel="stylesheet" href="css/compiler/bootstrap/cadastro.css">
+<link rel="stylesheet" href="css/compiler/bootstrap/sucesso.css">
 
 
 </head>
@@ -187,55 +185,20 @@
 	<!-- Corpo do Site -->
 	<main> <!-- Section 1 -- Main -->
 	<section id="main">
-		<div class="vh-100 conteudo-cadastro">
+		<div class="vh-100 conteudo-sucesso">
 			<div class="row h-100">
-				<div class="col-12 col-lg-4 texto">
-					<h1>Faça seu cadastro agora!</h1>
-					<p>Se cadastre e tire suas dúvidas comigo :)</p>
+				<div class="col"></div>
+				<div class="col-lg-6 col-md-10 principal-sucesso d-flex flex-wrap">
+					<h1>;)</h1>
+					<h3 class="flex-grow-6">Seu cadastro foi feito com sucesso!!</h3>
+					<c:if test="${not empty userName}">
+						<p>
+							Olá <b>${userName}</b> você foi cadastrado com sucesso, agora
+							você pode efetuar o login.
+						</p>
+					</c:if>
 				</div>
-				<div class="col-12 col-lg-8 formulario">
-					<form class="form-group" action="CadastroServlet" method="POST"
-						id="form-cadastro">
-						<h1>cadastro</h1>
-						<input type="text" class="form-control" maxlength="60" id="nome"
-							placeholder="Nome" name="nm_usuario"> <input type="text"
-							class="form-control" maxlength="120" id="telefone"
-							placeholder="Telefone" name="nr_telefone"> <input
-							type="email" class="form-control" maxlength="120" id="email"
-							placeholder="Email" name="tx_email"> <input type="text"
-							class="form-control" id="data-nasc" maxlength="7"
-							placeholder="Data de Nascimento" name="dt_nasc">
-
-						<%
-							CadastroDAO cadastroDAO = new CadastroDAO();
-						%>
-						<%
-							ArrayList<String> optionList = cadastroDAO.selectTurma();
-						%>
-						<select class="select01 custom-select" id="inputGroupSelect01"
-							name="tb_turma_cd_turma">
-							<option>Turma</option>
-							<%
-								for (int i = 0; i < optionList.size(); i++) {
-							%>
-							<option><%=optionList.get(i)%></option>
-							<%
-								}
-							%>
-						</select> <input type="password" class="form-control senha1" id="senha"
-							maxlength="16" placeholder="Senha" name="tx_senha"> <input
-							type="password" class="form-control senha2" id="senha2"
-							maxlength="16" placeholder="Repita Sua Senha" name="tx_senha2">
-						<p>*Sua senha deve ter entre 6-18 caracteres.</p>
-						<c:if test="${not empty error}">
-							<p style="color: #c60822;"><b>${error}</b></p>
-						</c:if>
-
-						<button type="submit" class="btn btn-primary btn-cadastro"
-							id="btn-cadastrar">Cadastrar</button>
-					</form>
-
-				</div>
+				<div class="col"></div>
 			</div>
 		</div>
 	</section>
@@ -273,15 +236,7 @@
 <!-- isso está bugando o menu -->
 <script src="js/index.js"></script>
 <script src="js/modais.js"></script>
-<script src="js/cadastro.js"></script>
 
-<script>
-	//mascaras de data e telefone
-	$(document).ready(function() {
-		$('#data-nasc').mask('00/00/0000');
-		$('#telefone').mask("(99) 9999-99999");
-	});
-</script>
 
 <!-- libras -->
 <script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>

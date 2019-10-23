@@ -1,5 +1,9 @@
 package br.com.jadechatbot.beans;
 
+/**
+ * Classe utilizada para popular instancias objetos do tipo Turma 
+ * @author rm83220
+ */
 public class Usuario {
 
 	private int cdRm;
@@ -14,7 +18,12 @@ public class Usuario {
 
 	public Usuario() {
 	}
-
+	
+	
+	/**
+	 * Metodo connstrutor de usuário
+	 * @param
+	 */
 	public Usuario(int cdRm, String nmUsuario, String txEmail, String nrTelefone, String dtNasc, String txSenha,
 			String txSenhaR, char nrNivelAcesso, int tbTurmaCdTurma) {
 		super();
@@ -28,7 +37,11 @@ public class Usuario {
 		this.nrNivelAcesso = nrNivelAcesso;
 		this.tbTurmaCdTurma = tbTurmaCdTurma;
 	}
-
+	
+	
+	/**
+	 * @see Usuario#Usuario(int, String, String, String, String, String, String, char, int)
+	 */
 	public Usuario(String nmUsuario, String txEmail, String nrTelefone, String dtNasc, String txSenha, String txSenhaR,
 			char nrNivelAcesso, int tbTurmaCdTurma) {
 		super();
@@ -41,7 +54,11 @@ public class Usuario {
 		this.nrNivelAcesso = nrNivelAcesso;
 		this.tbTurmaCdTurma = tbTurmaCdTurma;
 	}
-
+	
+	
+	/**
+	 * @see Usuario#Usuario(int, String, String, String, String, String, String, char, int)
+	 */
 	public Usuario(String nmUsuario, String txEmail, String nrTelefone, String dtNasc, String txSenha,
 			char nrNivelAcesso, int tbTurmaCdTurma) {
 		super();

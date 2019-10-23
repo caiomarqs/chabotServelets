@@ -15,6 +15,11 @@ import com.ibm.watson.text_to_speech.v1.TextToSpeech;
 import com.ibm.watson.text_to_speech.v1.model.SynthesizeOptions;
 import com.ibm.watson.text_to_speech.v1.util.WaveUtils;
 
+/**
+ * Classe que faz a comunicação com a API de TSS da IBM Cloud
+ * @author rm83220
+ */
+
 @WebServlet("/TTS")
 public class TTS extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -24,9 +29,12 @@ public class TTS extends HttpServlet {
         super();
     }
 
-    
+	/**
+	 * Metodo responsavel pela a chamda da api fazendo a converção de Texto para Voz. 
+	 * @param
+	 */
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-String msg = req.getParameter("question");
+		String msg = req.getParameter("question");
 		
 		IamOptions options = new IamOptions.Builder()
 //				.apiKey("F4EKYbfSEtlSmiHXe59mtBUTFF5dWGZJE8VB3cNYc7DD") //api propria com 10000 caracteres.

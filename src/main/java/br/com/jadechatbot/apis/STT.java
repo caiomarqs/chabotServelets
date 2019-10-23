@@ -19,8 +19,10 @@ import com.ibm.watson.speech_to_text.v1.model.RecognizeOptions;
 import com.ibm.watson.speech_to_text.v1.model.SpeechRecognitionResults;
 
 /**
- * Servlet implementation class STT
+ * Classe que faz a comunicação com a API de STT da IBM Cloud
+ * @author rm83220
  */
+
 @WebServlet("/STT")
 public class STT extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -28,7 +30,11 @@ public class STT extends HttpServlet {
 	public STT() {
 		super();
 	}
-
+	
+	/**
+	 * Metodo responsavel pela a chamda da api fazendo a converção de Voz para texto. 
+	 * @param
+	 */
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
 		byte[] buffer = new byte[1024 * 1024];

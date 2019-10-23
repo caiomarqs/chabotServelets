@@ -1,5 +1,9 @@
 package br.com.jadechatbot.beans;
 
+/**
+ * Classe utilizada para popular instancias objetos do tipo Turma 
+ * @author rm83220
+ */
 public class Turma {
 	
 	private String cdTurma;
@@ -9,7 +13,10 @@ public class Turma {
 	private int tbCursoCdCurso;
 	
 	public Turma() {}
-
+	
+	/**
+	 * Método construtor de Turma
+	 */
 	public Turma(String cdTurma, String nmTurma, int dtInicioTurma, int dtFinalTurma, int tbCursoCdCurso) {
 		super();
 		setCdTurma(cdTurma);

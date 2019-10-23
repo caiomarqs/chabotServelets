@@ -6,47 +6,20 @@ import java.sql.ResultSet;
 
 import br.com.jadechatbot.beans.Usuario;
 import br.com.jadechatbot.conn.Conn;
-
 /**
- * DAO com os métodos que excutam as interações referente ao Login do com o Banco de Dados.
- * @author rm83220, rm83211, rm83227
+ * DAO com os métodos que excutam as interações referente a Sessão do usuário com o sistema.
+ * @author rm83220
  *
  */
-public class LoginDAO {
-
+public class SessionDAO {
 	private Connection conn;
-
+	
 	/**
 	 * Método que chama a connection com a instância da DAO.
 	 * @throws Exception
 	 */
-	public LoginDAO() throws Exception {
+	public SessionDAO() throws Exception {
 		this.conn = new Conn().getConnection();
-	}
-
-	/**
-	 * Método que consulta o email e senha do usuário.
-	 * @param strEmail
-	 * @param strSenha
-	 * @return
-	 */
-	public boolean validarLogin(String strEmail, String strSenha) {
-		boolean status = false;
-		String sqlQuerry = "SELECT * FROM tb_usuario WHERE tx_email = ? and tx_senha = ?";
-		
-		try {
-			PreparedStatement pdst = this.conn.prepareStatement(sqlQuerry);
-			pdst.setString(1, strEmail);
-			pdst.setString(2, strSenha);
-			ResultSet rs = pdst.executeQuery();
-			status = rs.next();
-			
-		} catch (Exception e) {
-			System.out.println("O usuario e senha não condizem");
-			System.out.println(e);
-		}
-		
-		return status;
 	}
 
 	/**
@@ -64,7 +37,7 @@ public class LoginDAO {
 		pdst.setString(1, strEmail);
 		
 		ResultSet resultSelect = pdst.executeQuery();
-
+		
 		if(resultSelect.next()) {
 			usuario = new Usuario(resultSelect.getString("nm_usuario"), 
 				      resultSelect.getString("tx_email"),
@@ -79,6 +52,20 @@ public class LoginDAO {
 		pdst.close();
 
 		return usuario;
+	}
+	
+	/**
+	 * Metodo usado para deletar usuario
+	 * @param strEmail
+	 * @return
+	 * @throws Exception
+	 */
+	public int apagarUsuario(String strEmail) throws Exception{
+		PreparedStatement stmt = this.conn.prepareStatement("delete from TB_USUARIO where tx_email = ?");
+		stmt.setString(1, strEmail);
+		int saida = stmt.executeUpdate();
+		stmt.close();
+		return saida;
 	}
 
 }
