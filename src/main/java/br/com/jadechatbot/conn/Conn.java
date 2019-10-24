@@ -12,8 +12,8 @@ public class Conn {
 	
 	
 	private String url = "jdbc:oracle:thin:@oracle.fiap.com.br:1521:ORCL";
-	private String user = "rm83220";
-	private String password = "141299";
+	private String user = "rm83211";
+	private String password = "fiap";
 	
 	/**
 	 * Método que faz a conecção com o banco de dados

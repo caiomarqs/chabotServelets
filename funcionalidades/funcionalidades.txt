@@ -1,0 +1,21 @@
+Funcionalidades
+
+1-Cadastro de usuario, validando pelo o front e validacao de senhas condizentes via na BO, e de email existente e cadastro feito com secesso
+2-Login por email e senha registrada no banco
+3-configuracoes é possivel ver dados do usuario
+4-nivel de acesso todo usuário padrão só visualiza suas informações
+5-nivel de acesso: usuario admin tem o campo de deletar usuário
+  //----------Teste é o projeto----//
+  UsarioAdmin: ronqui@fiap.com
+  SenhaAdmin : profronqui
+  UsarioAdmin: isarel@fiap.com
+  SenhaAdmin : profisarel
+  
+site em produção: https://jade-chatbot.appspot.com/
+  //---------Producao--------//
+  UsarioAdmin: mbappe@brabo.com
+  SenhaAdmin : root
+  
+  
+  
+ Repositorio no git: https://github.com/caiomarqs/chabotServelets
