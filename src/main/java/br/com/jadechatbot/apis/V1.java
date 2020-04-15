@@ -160,7 +160,7 @@ public class V1 extends HttpServlet {
 
 		String workingDirectory = System.getProperty("user.dir");
 
-		String pathLog = workingDirectory + "/logs/conversa_" + IdAnteriorMetodo + ".json";
+		String pathLog = workingDirectory + "/conversa_" + IdAnteriorMetodo + ".json";
 
 //		PrintStream file = new PrintStream(new File(pathLog));
 //		System.setOut(file);

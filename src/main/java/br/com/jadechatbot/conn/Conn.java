@@ -2,6 +2,7 @@ package br.com.jadechatbot.conn;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.SQLException;
 
 /**
  * Classe utilizada para gerenciar a conexão(connection) da aplição com o Banco de Dados
@@ -12,8 +13,8 @@ public class Conn {
 	
 	
 	private String url = "jdbc:oracle:thin:@oracle.fiap.com.br:1521:ORCL";
-	private String user = "rm83211";
-	private String password = "fiap";
+	private String user = "rm83220";
+	private String password = "141299";
 	
 	/**
 	 * Método que faz a conecção com o banco de dados
@@ -39,5 +40,14 @@ public class Conn {
 		return conn;
 	}
 
+	public static void main(String[] args) throws SQLException, Exception {
+		
+		int i = 0;
+		while(i < 10) {
+			new Conn().getConnection().close();
+			i++;
+		}
+		
+	}
 
 }

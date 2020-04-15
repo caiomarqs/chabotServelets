@@ -20,17 +20,19 @@ public class LoginDAO {
 	 * Método que chama a connection com a instância da DAO.
 	 * @throws Exception
 	 */
-	public LoginDAO() throws Exception {
-		this.conn = new Conn().getConnection();
-	}
+//	public LoginDAO() throws Exception {
+//		this.conn = new Conn().getConnection();
+//	}
 
 	/**
 	 * Método que consulta o email e senha do usuário.
 	 * @param strEmail
 	 * @param strSenha
 	 * @return
+	 * @throws Exception 
 	 */
-	public boolean validarLogin(String strEmail, String strSenha) {
+	public boolean validarLogin(String strEmail, String strSenha) throws Exception {
+		conn = new Conn().getConnection();
 		boolean status = false;
 		String sqlQuerry = "SELECT * FROM tb_usuario WHERE tx_email = ? and tx_senha = ?";
 		
@@ -45,7 +47,7 @@ public class LoginDAO {
 			System.out.println("O usuario e senha não condizem");
 			System.out.println(e);
 		}
-		
+		this.conn.close();
 		return status;
 	}
 
@@ -56,6 +58,7 @@ public class LoginDAO {
 	 * @throws Exception
 	 */
 	public Usuario selectUsuario(String strEmail) throws Exception {
+		conn = new Conn().getConnection();
 		Usuario usuario = new Usuario();
 
 		String sqlQuerry = "SELECT * FROM tb_usuario WHERE tx_email = ?";
@@ -77,7 +80,7 @@ public class LoginDAO {
 
 		resultSelect.close();
 		pdst.close();
-
+		this.conn.close();
 		return usuario;
 	}
 

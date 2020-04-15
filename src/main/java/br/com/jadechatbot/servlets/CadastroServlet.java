@@ -80,6 +80,7 @@ public class CadastroServlet extends HttpServlet {
 			}
 
 		} catch (Exception e1) {
+			System.out.println(e1);
 			request.setAttribute("error", "Cadastro invalido tente novamente");
 			request.getRequestDispatcher("/cadastro.jsp").forward(request, response);
 		}

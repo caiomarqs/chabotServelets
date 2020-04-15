@@ -2,15 +2,15 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
-<%
-	session = request.getSession(false);
+<% 
+// 	session = request.getSession(false);
 
-	String sessionID = (String) session.getAttribute("userEmail");
+// 	String sessionID = (String) session.getAttribute("userEmail");
 	
-	if(sessionID == null){
-		request.getRequestDispatcher("/index.jsp").forward(request, response);
-	}
-%>
+// 	if(sessionID == null){
+// 		request.getRequestDispatcher("/index.jsp").forward(request, response);
+// }
+%> 
 
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -75,10 +75,10 @@
 
 					<!-- cadastro e login -->
 					<ul class="navbar-nav d-none d-lg-flex ml-2 order-3">
-						<c:if test="${not empty userName}">
+<%-- 						<c:if test="${not empty userName}"> --%>
 							<li class="nav-item"><a class="nav-link" href="#"
-								id="btn-nav-nome">${userName}</a></li>
-						</c:if>
+								id="btn-nav-nome">User</a></li>
+<%-- 						</c:if> --%>
 
 						<li class="nav-item"><a class="nav-link" href="./ConfiguracaoServlet" id="btn-nav-config"
 							data-toggle="modal" data-target=".bd-login">Configurações</a></li>
@@ -89,10 +89,10 @@
 					<!-- cadatro e login para mobile -->
 					<ul class="navbar-nav d-lg-none">
 						<li class="dropdown-divider"></li>
-						<c:if test="${not empty userName}">
+<%-- 						<c:if test="${not empty userName}"> --%>
 							<li class="nav-item"><a class="nav-link" href="#"
-								id="btn-nav">${userName}</a></li>
-						</c:if>
+								id="btn-nav">User</a></li>
+<%-- 						</c:if> --%>
 						<li class="nav-item"><a class="nav-link" href="" id="btn-nav"
 							data-toggle="modal" data-target=".bd-login">Configurações</a></li>
 					</ul>

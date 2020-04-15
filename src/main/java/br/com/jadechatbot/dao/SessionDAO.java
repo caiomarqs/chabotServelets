@@ -18,9 +18,9 @@ public class SessionDAO {
 	 * Método que chama a connection com a instância da DAO.
 	 * @throws Exception
 	 */
-	public SessionDAO() throws Exception {
-		this.conn = new Conn().getConnection();
-	}
+//	public SessionDAO() throws Exception {
+//		this.conn = new Conn().getConnection();
+//	}
 
 	/**
 	 * Método que consulta o usuário retornando o objeto populado Usuario.
@@ -29,6 +29,7 @@ public class SessionDAO {
 	 * @throws Exception
 	 */
 	public Usuario selectUsuario(String strEmail) throws Exception {
+		conn = new Conn().getConnection();
 		Usuario usuario = new Usuario();
 
 		String sqlQuerry = "SELECT * FROM tb_usuario WHERE tx_email = ?";
@@ -50,7 +51,7 @@ public class SessionDAO {
 
 		resultSelect.close();
 		pdst.close();
-
+		this.conn.close();
 		return usuario;
 	}
 	
@@ -61,10 +62,12 @@ public class SessionDAO {
 	 * @throws Exception
 	 */
 	public int apagarUsuario(String strEmail) throws Exception{
+		conn = new Conn().getConnection();
 		PreparedStatement stmt = this.conn.prepareStatement("delete from TB_USUARIO where tx_email = ?");
 		stmt.setString(1, strEmail);
 		int saida = stmt.executeUpdate();
 		stmt.close();
+		this.conn.close();
 		return saida;
 	}
 

@@ -50,30 +50,23 @@ public class LoginServlet extends HttpServlet {
 		String strTxSenha = request.getParameter("senha_modal");
 		
 		LoginDAO loginDAO = null;
-		try {
-			loginDAO = new LoginDAO();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
 		
 		Usuario usuario = null;
-		try {
-			usuario = new LoginDAO().selectUsuario(strTxEmail);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		
 		HttpSession session = request.getSession();  
-	         
-		
-		if(loginDAO.validarLogin(strTxEmail, strTxSenha)) {	        
-	        request.setAttribute("userName", usuario.getNmUsuario());
-	        session.setAttribute("userEmail", usuario.getTxEmail());
-	        session.setAttribute("statusSession", true);
-	        request.getRequestDispatcher("/chat.jsp").forward(request, response);
-		}else{
+		try {
+			loginDAO = new LoginDAO();
+			usuario = new LoginDAO().selectUsuario(strTxEmail);
 			
+			if(loginDAO.validarLogin(strTxEmail, strTxSenha)) {	        
+		        request.setAttribute("userName", usuario.getNmUsuario());
+		        session.setAttribute("userEmail", usuario.getTxEmail());
+		        session.setAttribute("statusSession", true);
+		        request.getRequestDispatcher("/chat.jsp").forward(request, response);
+			}
+		} catch (Exception e) {
 			request.getRequestDispatcher("/index.jsp").forward(request, response);
+			e.printStackTrace();
+			
 		}
 	}
 

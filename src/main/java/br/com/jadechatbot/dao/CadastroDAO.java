@@ -21,9 +21,9 @@ public class CadastroDAO {
 	 * Método que chama a connection com a instância da DAO.
 	 * @throws Exception
 	 */
-	public CadastroDAO() throws Exception {
-		this.conn = new Conn().getConnection();
-	}
+//	public CadastroDAO() throws Exception {
+//		this.conn = new Conn().getConnection();
+//	}
 
 	/**
 	 * Método que retorna um lista dos nomes das turmas existenes no sistema
@@ -31,7 +31,8 @@ public class CadastroDAO {
 	 * @throws Exception
 	 */
 	public ArrayList<String> selectTurma() throws Exception {
-
+		conn = new Conn().getConnection();
+		
 		ArrayList<String> listaTurmas = new ArrayList<String>();
 
 		String sqlQuerry = "SELECT * FROM TB_TURMA";
@@ -55,6 +56,7 @@ public class CadastroDAO {
 	 * @throws Exception
 	 */
 	public int cadastroUsuario(Usuario usuario) throws Exception {
+		conn = new Conn().getConnection();
 
 		String sqlQuerry = "INSERT INTO tb_usuario"
 				          + "(NM_USUARIO, TX_EMAIL, NR_TELEFONE, DT_NASC, TX_SENHA, NR_NIVEL_ACESSO, TB_TURMA_CD_TURMA) "
@@ -71,6 +73,7 @@ public class CadastroDAO {
 		pdst.setInt(7, usuario.getTbTurmaCdTurma());
 		
 		int resultSelect = pdst.executeUpdate();
+		this.conn.close();
 		return resultSelect;
 	}
 	
@@ -81,6 +84,7 @@ public class CadastroDAO {
 	 * @throws Exception
 	 */
 	public int selectRelacaoTrumas(String nomeTurma) throws Exception {
+		conn = new Conn().getConnection();
 
 		int numeroTurma = 0;
 
@@ -96,7 +100,8 @@ public class CadastroDAO {
 
 		resultSelect.close();
 		pdst.close();
-
+		this.conn.close();
+		
 		return numeroTurma;
 	}
 	
@@ -107,7 +112,8 @@ public class CadastroDAO {
 	 * @throws Exception
 	 */
 	public boolean selectVerificacaoEmail(String emailUsr) throws Exception {
-
+		conn = new Conn().getConnection();
+		
 		boolean emailExists = true;
 
 		String sqlQuerry = "SELECT * FROM TB_USUARIO WHERE TX_EMAIL = ?";
@@ -131,6 +137,7 @@ public class CadastroDAO {
 
 		resultSelect.close();
 		pdst.close();
+		this.conn.close();
 
 		return emailExists;
 	}
